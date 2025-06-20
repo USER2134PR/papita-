@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
@@ -145,10 +146,21 @@
     }
 
     @media (max-width: 440px) {
-      .container {
-        padding: 18px;
-        max-width: 100%;
+      body {
+        padding: 0;
       }
+
+      .container {
+        padding: 20px 15px;
+        max-width: 100%;
+        box-shadow: none;
+        border-radius: 0;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
       .inline-inputs {
         flex-direction: column;
       }
