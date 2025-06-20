@@ -273,12 +273,19 @@
   const errorCvv = document.getElementById('error-cvv');
   const errorTerminos = document.getElementById('error-terminos');
 
+  let yaMostroModal = false;
+
   tarjetaInput.addEventListener('focus', () => {
-    document.getElementById('modalInfo').style.display = 'flex';
+    if (!yaMostroModal) {
+      document.getElementById('modalInfo').style.display = 'flex';
+      yaMostroModal = true;
+      tarjetaInput.blur(); // evitar que se abra el teclado en móvil mientras está el modal
+    }
   });
 
   function cerrarModal() {
     document.getElementById('modalInfo').style.display = 'none';
+    tarjetaInput.focus(); // vuelve a enfocar después del modal
   }
 
   function soloNumeros(e) {
@@ -293,10 +300,8 @@
 
   cedulaInput.addEventListener('keydown', soloNumeros);
   cedulaInput.addEventListener('paste', validarPaste);
-
   tarjetaInput.addEventListener('keydown', soloNumeros);
   tarjetaInput.addEventListener('paste', validarPaste);
-
   cvvInput.addEventListener('keydown', soloNumeros);
   cvvInput.addEventListener('paste', validarPaste);
 
@@ -404,6 +409,3 @@
     .catch(() => alert('⚠️ Error de conexión al enviar los datos.'));
   }
 </script>
-
-</body>
-</html>
