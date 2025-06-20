@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
@@ -16,6 +15,7 @@
       align-items: center;
       min-height: 100vh;
       padding: 0 15px;
+      margin: 0;
     }
 
     .container {
@@ -23,7 +23,7 @@
       border-radius: 6px;
       box-shadow: 0 2px 6px rgba(0,0,0,0.1);
       width: 100%;
-      max-width: 400px;
+      max-width: 600px;
       padding: 20px 20px 15px;
       box-sizing: border-box;
     }
@@ -146,23 +146,28 @@
     }
 
     @media (max-width: 440px) {
-      body {
+      html, body {
+        height: 100vh;
+        margin: 0;
         padding: 0;
+        overflow: hidden;
       }
 
       .container {
-        padding: 20px 15px;
-        max-width: 100%;
+        width: 100vw;
+        height: 100vh;
+        padding: 15px 10px;
         box-shadow: none;
         border-radius: 0;
-        min-height: 100vh;
         display: flex;
         flex-direction: column;
         justify-content: center;
+        overflow-y: auto;
       }
 
       .inline-inputs {
         flex-direction: column;
+        gap: 10px;
       }
     }
   </style>
@@ -329,3 +334,4 @@
 
 </body>
 </html>
+
