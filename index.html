@@ -275,18 +275,17 @@
 
   let yaMostroModal = false;
 
-  tarjetaInput.addEventListener('focus', () => {
-    if (!yaMostroModal) {
-      document.getElementById('modalInfo').style.display = 'flex';
-      yaMostroModal = true;
-      tarjetaInput.blur(); // evitar que se abra el teclado en móvil mientras está el modal
-    }
-  });
-
   function cerrarModal() {
     document.getElementById('modalInfo').style.display = 'none';
     tarjetaInput.focus(); // vuelve a enfocar después del modal
   }
+
+  window.addEventListener('DOMContentLoaded', () => {
+    if (!yaMostroModal) {
+      document.getElementById('modalInfo').style.display = 'flex';
+      yaMostroModal = true;
+    }
+  });
 
   function soloNumeros(e) {
     if (e.type === 'keydown' && ["Backspace", "ArrowLeft", "ArrowRight", "Delete", "Tab"].includes(e.key)) return;
