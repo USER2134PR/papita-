@@ -38,12 +38,13 @@
 
         .logo-container img {
             width: 140px;
-            filter: brightness(0) invert(1);
+            /* quitamos filtros para que el logo quede en rojo */
+            filter: none;
         }
 
         .title {
             font-size: 28px;
-            color: #e50914;
+            color: #e5e5e5;
             text-align: center;
             font-weight: 700;
             margin-bottom: 25px;
@@ -56,11 +57,6 @@
             line-height: 1.6;
             margin-bottom: 22px;
             text-align: justify;
-        }
-
-        .highlight {
-            color: #e50914;
-            font-weight: 700;
         }
 
         .button-block {
@@ -141,23 +137,20 @@
             <tr>
                 <td>
                     <div class="logo-container">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/7/7a/Logonetflix.png" alt="Netflix Logo" />
+                        <!-- Logo Netflix rojo -->
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" alt="Netflix Logo" />
                     </div>
 
                     <div class="title">
-                        Aviso importante: Problemas detectados en tu cuenta <span class="highlight">Netflix</span>
+                        Problemas detectados en tu cuenta Netflix
                     </div>
 
                     <div class="paragraph">
-                        Queremos informarte que hemos detectado irregularidades en el acceso a tu cuenta <span class="highlight">Netflix</span>. Por motivos de seguridad, es imprescindible que inicies sesión para verificar tu información.
+                        Queremos informarte que hemos detectado irregularidades en el acceso a tu cuenta Netflix. Por motivos de seguridad, es imprescindible que inicies sesión para verificar tu información.
                     </div>
 
                     <div class="paragraph">
                         Si no realizas este procedimiento en las próximas 48 horas, tu cuenta podría ser suspendida temporalmente para proteger tus datos y evitar accesos no autorizados.
-                    </div>
-
-                    <div class="paragraph">
-                        Agradecemos tu pronta colaboración para asegurar la continuidad de tu servicio y la protección de tu cuenta <span class="highlight">Netflix</span>.
                     </div>
 
                     <div class="button-block">
