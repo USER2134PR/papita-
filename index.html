@@ -58,15 +58,18 @@
             color: #fff;
         }
 
-        /* Inputs */
-        .form-group {
-            margin-bottom: 12px;
-        }
+        /* Inputs y botones alineados */
         .form-group input,
         .login-btn,
         .login-code-btn {
             width: 100%;
-            box-sizing: border-box; /* asegura que borde y padding no cambien el tamaño */
+            box-sizing: border-box;
+            display: block;
+        }
+
+        /* Inputs */
+        .form-group {
+            margin-bottom: 12px;
         }
         .form-group input {
             padding: 12px;
@@ -95,7 +98,7 @@
             font-weight: bold;
             border-radius: 4px;
             cursor: pointer;
-            margin-top: 15px;
+            margin-top: 12px;
         }
         .login-btn:hover {
             background-color: #f40612;
@@ -120,9 +123,8 @@
             border-radius: 4px;
             cursor: pointer;
             text-align: center;
-            display: block;
             text-decoration: none;
-            margin: 0; /* alineación perfecta */
+            margin: 0;
         }
         .login-code-btn:hover {
             background-color: rgba(255, 255, 255, 0.05);
