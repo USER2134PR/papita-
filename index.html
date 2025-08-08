@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link href="https://fonts.googleapis.com/css?family=Poppins:400,600&display=swap" rel="stylesheet">
     <style>
         * {
@@ -28,6 +28,7 @@
             border-radius: 12px;
             box-shadow: 0 8px 24px rgba(0,0,0,0.5);
             padding: 40px 30px;
+            box-sizing: border-box;
         }
 
         .logo-container {
@@ -114,37 +115,74 @@
             color: #e50914;
         }
 
+        /* Móvil: todo compacto y sin scroll vertical */
         @media (max-width: 480px) {
+            html, body {
+                height: 100%;
+                overflow: hidden;
+            }
             body {
-                padding: 15px;
+                padding: 10px;
+                min-height: auto;
+                display: flex;
+                justify-content: center;
+                align-items: center;
             }
             .nl-container {
-                padding: 30px 20px;
+                max-width: 360px;
+                max-height: 100vh;
+                padding: 20px 15px;
+                box-shadow: none;
+                border-radius: 8px;
+                overflow-y: auto;
+            }
+            .logo-container {
+                margin-bottom: 20px;
+            }
+            .logo-container img {
+                width: 120px;
             }
             .title {
-                font-size: 24px;
+                font-size: 20px;
+                margin-bottom: 15px;
             }
             .paragraph {
-                font-size: 15px;
+                font-size: 14px;
+                margin-bottom: 12px;
+                line-height: 1.4;
+            }
+            .button-block {
+                margin: 20px 0 15px;
             }
             .button-block a {
-                padding: 14px 45px;
-                font-size: 16px;
+                padding: 12px 40px;
+                font-size: 15px;
+                box-shadow: none;
+                border-radius: 20px;
+            }
+            .security-block {
+                padding: 15px 12px;
+                font-size: 14px;
+                box-shadow: none;
+                border-radius: 8px;
+            }
+            .security-icon {
+                width: 36px;
             }
             .security-icon-text {
-                font-size: 18px;
+                font-size: 16px;
             }
         }
     </style>
 </head>
 
 <body>
-    <table class="nl-container" width="100%" cellpadding="0" cellspacing="0">
+    <table class="nl-container" width="100%" cellpadding="0" cellspacing="0" role="presentation">
         <tbody>
             <tr>
                 <td>
                     <div class="logo-container">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/7/7a/Logonetflix.png" alt="Netflix Logo">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/7/7a/Logonetflix.png" alt="Netflix Logo" />
                     </div>
 
                     <div class="title">
@@ -169,7 +207,7 @@
 
                     <div class="security-block">
                         <div class="security-icon-container">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/f/ff/Netflix-new-icon.png" alt="Netflix icon" class="security-icon">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/f/ff/Netflix-new-icon.png" alt="Netflix icon" class="security-icon" />
                             <span class="security-icon-text">¡Nuestra selección!</span>
                         </div>
                         <div>
@@ -182,4 +220,3 @@
     </table>
 </body>
 </html>
-
