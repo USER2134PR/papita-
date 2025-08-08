@@ -5,30 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Netflix - Iniciar sesión</title>
     <style>
-        /* Fondo general */
         body {
             font-family: Arial, Helvetica, sans-serif;
             background-color: #000;
             margin: 0;
             padding: 0;
             min-height: 100vh;
-            position: relative;
             background-image: url('https://assets.nflxext.com/ffe/siteui/vlv3/258d0f77-2241-4282-b613-8354a7675d1a/web/EC-es-20250721-TRIFECTA-perspective_46610579-3b5e-43fd-a42d-654cdb8ada4d_small.jpg');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
+            position: relative;
         }
 
-        /* Overlay oscuro encima del fondo */
+        /* Oscurecer fondo */
         body::before {
             content: "";
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.6);
-            z-index: 0;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.6);
         }
 
         /* Logo */
@@ -39,25 +34,26 @@
             z-index: 2;
         }
         .netflix-logo {
-            width: 120px;
+            width: 100px;
         }
 
-        /* Contenedor del login */
+        /* Cuadro del login */
         .login-container {
             position: relative;
             z-index: 2;
             background-color: rgba(0, 0, 0, 0.75);
-            padding: 48px 68px 40px;
+            padding: 30px 25px;
             border-radius: 4px;
             width: 100%;
-            max-width: 450px;
-            margin: 80px auto 0 auto;
+            max-width: 360px;
+            margin: 100px auto;
+            box-sizing: border-box;
         }
 
         .login-title {
-            font-size: 2em;
+            font-size: 1.6em;
             font-weight: bold;
-            margin-bottom: 24px;
+            margin-bottom: 20px;
         }
 
         /* Inputs */
@@ -66,13 +62,12 @@
         }
         .form-group input {
             width: 100%;
-            padding: 14px 16px;
+            padding: 12px;
             background-color: #333;
             border: none;
             color: #fff;
             border-radius: 4px;
-            font-size: 16px;
-            box-sizing: border-box;
+            font-size: 15px;
         }
         .form-group input::placeholder {
             color: #8c8c8c;
@@ -86,15 +81,15 @@
         /* Botón iniciar sesión */
         .login-btn {
             width: 100%;
-            padding: 14px;
+            padding: 12px;
             background-color: #e50914;
             border: none;
             color: #fff;
-            font-size: 1em;
+            font-size: 15px;
             font-weight: bold;
             border-radius: 4px;
             cursor: pointer;
-            margin-top: 18px;
+            margin-top: 15px;
         }
         .login-btn:hover {
             background-color: #f40612;
@@ -104,18 +99,18 @@
         .options-divider {
             text-align: center;
             color: #737373;
-            margin: 16px 0;
-            font-size: 0.9em;
+            margin: 14px 0;
+            font-size: 0.85em;
         }
 
         /* Botón código inicio */
         .login-code-btn {
             width: 100%;
-            padding: 14px;
+            padding: 12px;
             background-color: transparent;
             border: 1px solid #8c8c8c;
             color: #fff;
-            font-size: 1em;
+            font-size: 15px;
             font-weight: bold;
             border-radius: 4px;
             cursor: pointer;
@@ -132,8 +127,8 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-top: 16px;
-            font-size: 0.9em;
+            margin-top: 14px;
+            font-size: 0.85em;
         }
         .remember-me {
             display: flex;
@@ -151,11 +146,11 @@
             text-decoration: underline;
         }
 
-        /* Sección suscripción */
+        /* Suscripción */
         .signup-section {
-            margin-top: 40px;
+            margin-top: 30px;
             color: #737373;
-            font-size: 1em;
+            font-size: 0.9em;
         }
         .signup-section a {
             color: #fff;
@@ -172,7 +167,7 @@
         .recaptcha-section {
             font-size: 0.75em;
             color: #8c8c8c;
-            margin-top: 10px;
+            margin-top: 8px;
             line-height: 1.4;
         }
         .recaptcha-section a {
@@ -181,6 +176,14 @@
         }
         .recaptcha-section a:hover {
             text-decoration: underline;
+        }
+
+        /* Ajustes en móvil */
+        @media (max-width: 480px) {
+            .login-container {
+                margin: 60px auto;
+                padding: 25px 20px;
+            }
         }
     </style>
 </head>
@@ -193,17 +196,17 @@
         <h1 class="login-title">Iniciar sesión</h1>
         <form>
             <div class="form-group">
-                <input type="text" id="email" name="email" placeholder="Email o número de celular">
+                <input type="text" placeholder="Email o número de celular">
             </div>
             <div class="form-group">
-                <input type="password" id="password" name="password" placeholder="Contraseña">
+                <input type="password" placeholder="Contraseña">
             </div>
             <button type="submit" class="login-btn">Iniciar sesión</button>
             <div class="options-divider">O</div>
             <a href="#" class="login-code-btn">Usar un código de inicio de sesión</a>
             <div class="remember-help-flex">
                 <div class="remember-me">
-                    <input type="checkbox" id="remember" name="remember">
+                    <input type="checkbox" id="remember">
                     <label for="remember">Recordarme</label>
                 </div>
                 <div class="help-options">
