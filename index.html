@@ -21,7 +21,6 @@
             justify-content: center;
         }
 
-        /* Oscurecer fondo */
         body::before {
             content: "";
             position: absolute;
@@ -30,7 +29,6 @@
             z-index: 1;
         }
 
-        /* Logo */
         .logo-container {
             position: absolute;
             top: 20px;
@@ -41,7 +39,6 @@
             width: 100px;
         }
 
-        /* Cuadro del login */
         .login-container {
             position: relative;
             z-index: 2;
@@ -65,8 +62,13 @@
         .form-group {
             margin-bottom: 12px;
         }
-        .form-group input {
+        .form-group input,
+        .login-btn,
+        .login-code-btn {
             width: 100%;
+            box-sizing: border-box; /* asegura que borde y padding no cambien el tamaño */
+        }
+        .form-group input {
             padding: 12px;
             background-color: #333;
             border: none;
@@ -85,7 +87,6 @@
 
         /* Botón iniciar sesión */
         .login-btn {
-            width: 100%;
             padding: 12px;
             background-color: #e50914;
             border: none;
@@ -110,7 +111,6 @@
 
         /* Botón código inicio */
         .login-code-btn {
-            width: 100%;
             padding: 12px;
             background-color: transparent;
             border: 1px solid #8c8c8c;
@@ -122,6 +122,7 @@
             text-align: center;
             display: block;
             text-decoration: none;
+            margin: 0; /* alineación perfecta */
         }
         .login-code-btn:hover {
             background-color: rgba(255, 255, 255, 0.05);
@@ -183,17 +184,15 @@
             text-decoration: underline;
         }
         
-        /* Ajustes en móvil */
         @media (max-width: 480px) {
             body {
                 background-image: url('https://assets.nflxext.com/ffe/siteui/vlv3/258d0f77-2241-4282-b613-8354a7675d1a/web/EC-es-20250721-TRIFECTA-perspective_46610579-3b5e-43fd-a42d-654cdb8ada4d_small.jpg');
                 align-items: flex-start;
-                padding-top: 80px; /* Incrementado para más espacio en la parte superior */
+                padding-top: 80px;
             }
             .login-container {
-                margin: 0 10px; /* Centrado y con márgenes laterales */
+                margin: 0 10px;
             }
-            /* Aumentar el tamaño de la fuente para mejor legibilidad */
             .login-title {
                 font-size: 1.8em;
             }
