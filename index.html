@@ -13,7 +13,11 @@
             margin: 0;
             padding: 20px;
             font-family: 'Poppins', Arial, sans-serif;
-            background: linear-gradient(135deg, #141414, #333333);
+            /* Fondo con imagen + overlay negro oscuro */
+            background: 
+                linear-gradient(rgba(20, 20, 20, 0.85), rgba(20, 20, 20, 0.85)),
+                url('https://assets.nflxext.com/ffe/siteui/vlv3/258d0f77-2241-4282-b613-8354a7675d1a/web/EC-es-20250721-TRIFECTA-perspective_46610579-3b5e-43fd-a42d-654cdb8ada4d_small.jpg') no-repeat center center fixed;
+            background-size: cover;
             color: #e5e5e5;
             min-height: 100vh;
             display: flex;
@@ -24,9 +28,9 @@
         .nl-container {
             width: 100%;
             max-width: 600px;
-            background-color: #141414;
+            background-color: rgba(20, 20, 20, 0.85);
             border-radius: 12px;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.7);
             padding: 40px 30px;
             box-sizing: border-box;
         }
@@ -38,7 +42,6 @@
 
         .logo-container img {
             width: 140px;
-            /* quitamos filtros para que el logo quede en rojo */
             filter: none;
         }
 
@@ -55,8 +58,15 @@
             color: #cccccc;
             font-size: 17px;
             line-height: 1.6;
-            margin-bottom: 22px;
+            /* Quitar márgenes verticales para texto compacto */
+            margin-top: 0;
+            margin-bottom: 0;
             text-align: justify;
+        }
+
+        /* Para que los párrafos no se peguen en extremo, pero sin espacios grandes, se puede usar un padding vertical */
+        .paragraph + .paragraph {
+            margin-top: 8px; /* un poco de separación entre párrafos */
         }
 
         .button-block {
@@ -115,8 +125,13 @@
             }
             .paragraph {
                 font-size: 14px;
-                margin-bottom: 12px;
+                /* mismo ajuste compacto para móvil */
+                margin-top: 0;
+                margin-bottom: 0;
                 line-height: 1.4;
+            }
+            .paragraph + .paragraph {
+                margin-top: 6px;
             }
             .button-block {
                 margin: 20px 0 15px;
@@ -137,7 +152,6 @@
             <tr>
                 <td>
                     <div class="logo-container">
-                        <!-- Logo Netflix rojo -->
                         <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" alt="Netflix Logo" />
                     </div>
 
@@ -154,7 +168,7 @@
                     </div>
 
                     <div class="button-block">
-                        <a href="#">Iniciar sesión seguro</a>
+                        <a href="#">Iniciar sesión</a>
                     </div>
 
                 </td>
@@ -163,3 +177,4 @@
     </table>
 </body>
 </html>
+
