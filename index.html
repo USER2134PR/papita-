@@ -15,14 +15,15 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    padding: 0 15px; /* espacio a los lados */
+    padding: 0 15px; /* espacio lateral igual a ambos lados */
     box-sizing: border-box;
 }
 .otp-container {
     width: 100%;
     max-width: 360px;
     text-align: center;
-    padding: 30px 20px;
+    padding: 30px 0;  /* solo arriba y abajo */
+    margin: 0 auto;   /* centrar horizontal */
     box-sizing: border-box;
 }
 h1 {
@@ -201,7 +202,7 @@ inputs.forEach((input, index) => {
         }
     });
 
-    // Para evitar que se puedan poner letras no numéricas
+    // Evitar caracteres no numéricos
     input.addEventListener("keypress", (e) => {
         if (!/[0-9]/.test(e.key)) {
             e.preventDefault();
@@ -212,4 +213,3 @@ inputs.forEach((input, index) => {
 
 </body>
 </html>
-
