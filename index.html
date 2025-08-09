@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -364,6 +363,18 @@ body {
     font-size: 15px;
     box-shadow: none;
     border-radius: 20px;
+  }
+}
+
+/* Ajuste para centrar el spinner en móvil */
+@media (max-width: 480px) {
+  #spinner-section {
+    display: flex !important;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin-top: 0;
   }
 }
 </style>
