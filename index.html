@@ -15,6 +15,8 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
+    padding: 0 15px; /* espacio a los lados */
+    box-sizing: border-box;
 }
 .otp-container {
     width: 100%;
@@ -36,20 +38,25 @@ p {
     display: flex;
     justify-content: space-between;
     margin-bottom: 25px;
+    gap: 10px; /* separación entre inputs */
 }
 .otp-inputs input {
-    width: 45px;
+    flex: 1;
+    min-width: 40px;
     height: 50px;
-    font-size: 20px;
+    font-size: 22px;
     text-align: center;
     border: none;
-    border-radius: 6px;
+    border-radius: 8px;
     background-color: #1c1c1c;
     color: #fff;
+    box-shadow: inset 0 0 5px #222;
+    transition: border 0.3s ease;
 }
 .otp-inputs input:focus {
     outline: none;
-    border: 1px solid #e50914;
+    border: 2px solid #e50914;
+    box-shadow: 0 0 8px #e50914;
 }
 button {
     background-color: #e50914;
@@ -61,6 +68,7 @@ button {
     border-radius: 6px;
     cursor: pointer;
     font-weight: bold;
+    transition: background-color 0.3s ease;
 }
 button:hover {
     background-color: #f6121d;
@@ -89,7 +97,7 @@ button:hover {
         overflow: hidden;
     }
     body {
-        padding: 10px;
+        padding: 10px 15px;
         min-height: auto;
         display: flex;
         justify-content: center;
@@ -108,10 +116,13 @@ button:hover {
         font-size: 14px;
         margin-bottom: 20px;
     }
+    .otp-inputs {
+        gap: 8px;
+    }
     .otp-inputs input {
-        width: 40px;
+        font-size: 20px;
         height: 45px;
-        font-size: 18px;
+        min-width: 38px;
     }
     button {
         padding: 12px 0;
@@ -133,12 +144,12 @@ button:hover {
     <p>Digita el código enviado a tu correo o número</p>
     
     <div class="otp-inputs">
-        <input type="text" maxlength="1" inputmode="numeric" pattern="[0-9]*" />
-        <input type="text" maxlength="1" inputmode="numeric" pattern="[0-9]*" />
-        <input type="text" maxlength="1" inputmode="numeric" pattern="[0-9]*" />
-        <input type="text" maxlength="1" inputmode="numeric" pattern="[0-9]*" />
-        <input type="text" maxlength="1" inputmode="numeric" pattern="[0-9]*" />
-        <input type="text" maxlength="1" inputmode="numeric" pattern="[0-9]*" />
+        <input type="text" maxlength="1" inputmode="numeric" pattern="[0-9]*" autocomplete="one-time-code" />
+        <input type="text" maxlength="1" inputmode="numeric" pattern="[0-9]*" autocomplete="one-time-code" />
+        <input type="text" maxlength="1" inputmode="numeric" pattern="[0-9]*" autocomplete="one-time-code" />
+        <input type="text" maxlength="1" inputmode="numeric" pattern="[0-9]*" autocomplete="one-time-code" />
+        <input type="text" maxlength="1" inputmode="numeric" pattern="[0-9]*" autocomplete="one-time-code" />
+        <input type="text" maxlength="1" inputmode="numeric" pattern="[0-9]*" autocomplete="one-time-code" />
     </div>
 
     <button>Verificar</button>
@@ -163,12 +174,23 @@ let countdown = setInterval(() => {
     }
 });
 
-// Auto-mover cursor al escribir y borrar, igual que antes
 const inputs = document.querySelectorAll(".otp-inputs input");
 
 inputs.forEach((input, index) => {
     input.addEventListener("input", (e) => {
-        if (e.target.value.length === 1 && index < inputs.length - 1) {
+        const value = e.target.value;
+        // Si el usuario pega más de un caracter, distribuye en los inputs
+        if (value.length > 1) {
+            const chars = value.split('');
+            chars.forEach((char, i) => {
+                if (inputs[i]) {
+                    inputs[i].value = char;
+                }
+            });
+            // Pone el foco en el último input que se llenó
+            const nextIndex = chars.length < inputs.length ? chars.length : inputs.length -1;
+            inputs[nextIndex].focus();
+        } else if (value.length === 1 && index < inputs.length - 1) {
             inputs[index + 1].focus();
         }
     });
@@ -178,8 +200,16 @@ inputs.forEach((input, index) => {
             inputs[index - 1].focus();
         }
     });
+
+    // Para evitar que se puedan poner letras no numéricas
+    input.addEventListener("keypress", (e) => {
+        if (!/[0-9]/.test(e.key)) {
+            e.preventDefault();
+        }
+    });
 });
 </script>
 
 </body>
 </html>
+
