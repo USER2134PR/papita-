@@ -313,6 +313,16 @@ body {
   #login-screen .remember-help-flex {
     font-size: 0.9em;
   }
+
+  /* Centrar spinner sin agrandar */
+  #spinner-section {
+    display: flex !important;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px; /* mantiene el espacio */
+    height: auto;
+  }
 }
 
 /* Móvil: todo compacto y sin scroll vertical para aviso */
@@ -363,18 +373,6 @@ body {
     font-size: 15px;
     box-shadow: none;
     border-radius: 20px;
-  }
-}
-
-/* Ajuste para centrar el spinner en móvil */
-@media (max-width: 480px) {
-  #spinner-section {
-    display: flex !important;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin-top: 0;
   }
 }
 </style>
