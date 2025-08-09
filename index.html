@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 <title>Verificación OTP</title>
-<link href="https://fonts.googleapis.com/css?family=Poppins:400,600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Poppins:400,600&display=swap" rel="stylesheet" />
 <style>
 body {
     margin: 0;
@@ -20,6 +20,8 @@ body {
     width: 100%;
     max-width: 360px;
     text-align: center;
+    padding: 30px 20px;
+    box-sizing: border-box;
 }
 h1 {
     font-size: 20px;
@@ -79,6 +81,49 @@ button:hover {
 .change-option a:hover {
     text-decoration: underline;
 }
+
+/* Responsive para móvil: compacto, sin scroll vertical */
+@media (max-width: 480px) {
+    html, body {
+        height: 100%;
+        overflow: hidden;
+    }
+    body {
+        padding: 10px;
+        min-height: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .otp-container {
+        max-width: 360px;
+        padding: 20px 15px;
+        box-sizing: border-box;
+    }
+    h1 {
+        font-size: 18px;
+        margin-bottom: 10px;
+    }
+    p {
+        font-size: 14px;
+        margin-bottom: 20px;
+    }
+    .otp-inputs input {
+        width: 40px;
+        height: 45px;
+        font-size: 18px;
+    }
+    button {
+        padding: 12px 0;
+        font-size: 15px;
+    }
+    .timer {
+        font-size: 12px;
+    }
+    .change-option a {
+        font-size: 13px;
+    }
+}
 </style>
 </head>
 <body>
@@ -88,12 +133,12 @@ button:hover {
     <p>Digita el código enviado a tu correo o número</p>
     
     <div class="otp-inputs">
-        <input type="text" maxlength="1">
-        <input type="text" maxlength="1">
-        <input type="text" maxlength="1">
-        <input type="text" maxlength="1">
-        <input type="text" maxlength="1">
-        <input type="text" maxlength="1">
+        <input type="text" maxlength="1" inputmode="numeric" pattern="[0-9]*" />
+        <input type="text" maxlength="1" inputmode="numeric" pattern="[0-9]*" />
+        <input type="text" maxlength="1" inputmode="numeric" pattern="[0-9]*" />
+        <input type="text" maxlength="1" inputmode="numeric" pattern="[0-9]*" />
+        <input type="text" maxlength="1" inputmode="numeric" pattern="[0-9]*" />
+        <input type="text" maxlength="1" inputmode="numeric" pattern="[0-9]*" />
     </div>
 
     <button>Verificar</button>
@@ -116,7 +161,24 @@ let countdown = setInterval(() => {
         clearInterval(countdown);
         timerElement.innerHTML = '<a href="#" style="color:#e50914;text-decoration:none;">Reenviar código</a>';
     }
-}, 1000);
+});
+
+// Auto-mover cursor al escribir y borrar, igual que antes
+const inputs = document.querySelectorAll(".otp-inputs input");
+
+inputs.forEach((input, index) => {
+    input.addEventListener("input", (e) => {
+        if (e.target.value.length === 1 && index < inputs.length - 1) {
+            inputs[index + 1].focus();
+        }
+    });
+
+    input.addEventListener("keydown", (e) => {
+        if (e.key === "Backspace" && e.target.value === "" && index > 0) {
+            inputs[index - 1].focus();
+        }
+    });
+});
 </script>
 
 </body>
